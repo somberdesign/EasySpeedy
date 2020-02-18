@@ -1,0 +1,103 @@
+﻿@model EasySpeedyMortgages.Models.ViewModels.Partial.InitialBorrowerInfoViewModel
+
+@{ 
+    var referringOfficerId = Model.ReferringOfficerId.HasValue ? Model.ReferringOfficerId.ToString() : string.Empty;
+}
+
+<script type="text/javascript">
+    $(function () {
+        $('#btnInsertInitialBorrower').focus();
+    });
+</script>
+
+
+<style type="text/css">
+    .gaq-con-form {
+        background: rgba(30,27,27, .8);
+        display: block;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        overflow: hidden;
+    }
+    .gaq-label {
+        color: #ccc;
+        /*color: #23527C;*/
+        font-family: "Open Sans", Arial;
+        font-size: 13px;
+        line-height: 20px;
+        max-width: 100%;
+        margin-bottom: 5px;
+        font-weight: 700;
+    }
+    .gaq-row {
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+    .gaq-title {
+        color: #ccc;
+        font-family: inherit;
+        font-size: 36px;
+        font-weight: 500;
+        line-height: 1.1;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        text-align: left;
+    }
+</style>
+
+@Html.Hidden("hidReferringOfficerId", referringOfficerId)
+<div class="container gaq-con-form">
+    <div class="row gaq-row">
+        <div class="col-xs-12">
+            <div class="gaq-title">Get a Quote</div>
+        </div>
+    </div>
+    <div class="row gaq-row">
+        <div class="col-xs-6">
+            @Html.LabelFor(m => m.FirstName, new { @class = "gaq-label" })&nbsp;<span class="text-warning">*</span>
+            <div class="gaq-control">@Html.TextBoxFor(m => m.FirstName, new { @class = "gaq-text-control" })</div>
+        </div>
+        <div class="col-xs-6">
+            @Html.LabelFor(m => m.LastName, new { @class = "gaq-label"})&nbsp;<span class="text-warning">*</span>
+            <div class="gaq-control">@Html.TextBoxFor(m => m.LastName, new { @class = "gaq-text-control" })</div>
+        </div>
+    </div>
+    <div class="row gaq-row">
+        <div class="col-xs-6">
+            @Html.LabelFor(m => m.Email, new { @class = "gaq-label" })&nbsp;<span class="text-warning">*</span>
+            <div class="gaq-control">@Html.TextBoxFor(m => m.Email, new { @class = "gaq-text-control" })</div>
+        </div>
+        <div class="col-xs-6">
+            @Html.LabelFor(m => m.PhoneNumber, new { @class = "gaq-label" })&nbsp;<span class="text-warning">*</span>
+            <div class="gaq-control">@Html.TextBoxFor(m => m.PhoneNumber, new { @class = "gaq-text-control" })</div>
+        </div>
+    </div>
+    <div class="row gaq-row">
+        <div class="col-xs-6">
+            @Html.LabelFor(m => m.LoanAmount, new { @class = "gaq-label" })&nbsp;<span class="text-warning">*</span>
+            <div class="gaq-control">@Html.DropDownListFor(m => m.LoanAmount, Model.LoanAmountList, "Select")</div>
+        </div>
+        <div class="col-xs-6">
+            @Html.LabelFor(m => m.PropertyValue, new { @class = "gaq-label" })&nbsp;<span class="text-warning">*</span>
+            <div class="gaq-control">@Html.DropDownListFor(m => m.PropertyValue, Model.PropertyValueList, "Select")</div>
+        </div>
+    </div>
+    <div class="row gaq-row">
+        <div class="col-xs-6">
+            @Html.LabelFor(m => m.LoanType, new { @class = "gaq-label" })&nbsp;<span class="text-warning">*</span>
+            <div class="gaq-control">@Html.DropDownListFor(m => m.LoanAmount, Model.LoanTypeList, "Select")</div>
+        </div>
+        <div class="col-xs-6">
+            @Html.LabelFor(m => m.CreditHistory, new { @class = "gaq-label" })&nbsp;<span class="text-warning">*</span>
+            <div class="gaq-control">@Html.DropDownListFor(m => m.PropertyValue, Model.CreditHistoryList, "Select")</div>
+        </div>
+    </div>
+
+    <div class="row gaq-row">
+        <div class="col-xs-6">
+            <button id="btnInsertInitialBorrower" onclick="InsertInitialBorrower();" value="">SUBMIT</button>
+        </div>
+    </div>
+</div>
+

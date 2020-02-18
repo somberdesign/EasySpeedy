@@ -1,0 +1,274 @@
+﻿
+
+@using EasySpeedyMortgages.Classes
+
+@{
+    var StateListItems = EsmGlobals.ListItems_States;
+    StateListItems.Where(i => i.Value == "fl").First().Selected = true;
+}
+
+
+<div id="divPersonalInfoPage01" class="apply-page ">
+    <form id="frmPersonalInfoPage01">
+        <h4 id="hAccess">Your Information</h4>
+
+        <div class="container border-bottom bottom10">
+            <div class="row">
+                <div class="col-md-3 text-right">
+                    <label class="control-label">Name</label>
+                </div>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div id="divFirstName" class="col-md-3 form-group">
+                            <input type="text" id="txtFirstName" class="text-input form-control" formkey="txtFirstName" placeholder="First" required />
+                            <div class="invalid-feedback hidden text-danger">Required</div>
+                        </div>
+                        <div id="divMiddleName" class="col-md-3 form-group">
+                            <input type="text" id="txtMiddleName" class="text-input form-control" formkey="txtMiddleName" placeholder="Middle" required />
+                            <div class="invalid-feedback hidden text-danger">Required</div>
+                        </div>
+                        <div id="divLastName" class="col-md-3 form-group">
+                            <input type="text" id="txtLastName" class="text-input form-control" formkey="txtLastName" placeholder="Last" required />
+                            <div class="invalid-feedback hidden text-danger">Required</div>
+                        </div>
+                        <div id="divNameSuffix" class="col-md-2 form-group">
+                            <select id="ddlNameSuffix" class="select-input form-control" formkey="ddlNameSuffix">
+                                <option value="" selected="selected">Suffix</option>
+                                <option value="">None</option>
+                                <option value="sr">Sr</option>
+                                <option value="jr">Jr</option>
+                                <option value="iii">III</option>
+                                <option value="iv">IV</option>
+                                <option value="v">V</option>
+                            </select>
+                            <div class="invalid-feedback hidden text-danger">Select one</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="divSocialSecurity" class="row form-group">
+                <div class="col-md-3 text-right">
+                    <label class="control-label">Social Security</label>
+                </div>
+                <div class="col-md-9">
+                    <input type="text" id="txtSocialSecurity" name="txtSocialSecurity" class="text-input form-control" formkey="txtSocialSecurity" required />
+                    <div class="invalid-feedback hidden text-danger">Use xxx-xx-xxx format</div>
+                </div>
+            </div>
+            <div id="divMaritalStatus" class="row form-group">
+                <div class="col-md-3 text-right">
+                    <label class="control-label">Marital Status</label>
+                </div>
+                <div class="col-md-9">
+                    <select id="ddlMaritalStatus" class="select-input form-control" formkey="ddlMaritalStatus">
+                        <option value="" selected="selected">Select</option>
+                        <option value="married">Married</option>
+                        <option value="separated">Separated</option>
+                        <option value="unmarried">Single/Divorced/Widowed</option>
+                    </select>
+                    <div class="invalid-feedback hidden text-danger">Select one</div>
+                </div>
+            </div>
+            <br />
+        </div>
+        <div id="divCoApplicant">
+            <h4 id="hAccess">Co-Applicant Information</h4>
+
+            <div class="container border-bottom bottom10">
+                <div class="row">
+                    <div class="col-md-3 text-right">
+                        <label class="control-label">Name</label>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div id="divCoapplicantFirstName" class="col-md-3 form-group">
+                                <input type="text" id="txtCoapplicantFirstName" class="text-input form-control" formkey="txtCoapplicantFirstName" placeholder="First" required />
+                                <div class="invalid-feedback hidden text-danger">Required</div>
+                            </div>
+                            <div id="divCoapplicantMiddleName" class="col-md-3 form-group">
+                                <input type="text" id="txtCoapplicantMiddleName" class="text-input form-control" formkey="txtCoapplicantMiddleName" placeholder="Middle" required />
+                                <div class="invalid-feedback hidden text-danger">Required</div>
+                            </div>
+                            <div id="divCoapplicantLastName" class="col-md-3 form-group">
+                                <input type="text" id="txtCoapplicantLastName" class="text-input form-control" formkey="txtCoapplicantLastName" placeholder="Last" required />
+                                <div class="invalid-feedback hidden text-danger">Required</div>
+                            </div>
+                            <div id="divCoapplicantNameSuffix" class="col-md-2 form-group">
+                                <select id="ddlCoapplicantNameSuffix" class="select-input form-control" formkey="ddlCoapplicantNameSuffix">
+                                    <option value="" selected="selected">Suffix</option>
+                                    <option value="">None</option>
+                                    <option value="sr">Sr</option>
+                                    <option value="jr">Jr</option>
+                                    <option value="iii">III</option>
+                                    <option value="iv">IV</option>
+                                    <option value="v">V</option>
+                                </select>
+                                <div class="invalid-feedback hidden text-danger">Select one</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="divCoapplicantSocialSecurity" class="row form-group">
+                    <div class="col-md-3 text-right">
+                        <label class="control-label">Social Security</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" id="txtCoapplicantSocialSecurity" name="txtSocialSecurity" class="text-input form-control" formkey="txtCoapplicantSocialSecurity" required />
+                        <div class="invalid-feedback hidden text-danger">Use xxx-xx-xxx format</div>
+                    </div>
+                </div>
+                <div id="divCoapplicantMaritalStatus" class="row form-group">
+                    <div class="col-md-3 text-right">
+                        <label class="control-label">Marital Status</label>
+                    </div>
+                    <div class="col-md-9">
+                        <select id="ddlCoapplicantMaritalStatus" class="select-input form-control" formkey="ddlCoapplicantMaritalStatus">
+                            <option value="" selected="selected">Select</option>
+                            <option value="married">Married</option>
+                            <option value="separated">Separated</option>
+                            <option value="unmarried">Single/Divorced/Widowed</option>
+                        </select>
+                        <div class="invalid-feedback hidden text-danger">Select one</div>
+                    </div>
+                </div>
+                <br />
+            </div>
+        </div>
+    </form>
+
+    @Html.Application_Navigation_Buttons(
+        new CustomHelpers.NavigationButton() { EnableValidation = false, PageId = "StartAppPage02" },
+        new CustomHelpers.NavigationButton() { PageId = "PersonalInfoPage02" }
+    )
+</div>
+
+<div id="divPersonalInfoPage02" class="apply-page hidden">
+    <form id="frmPersonalInfoPage02">
+
+        <fieldset class="container">
+            <legend>Your Information</legend>
+            @Html.Application_Text_Box("ResidenceStreet", "Address")
+            @Html.Application_Text_Box("ResidenceCity", "City")
+            @Html.Application_Text_Box("ResidenceCountry", "Country", value: "USA")
+            @Html.Application_Dropdown_List("ResidenceState", "State", StateListItems, new SelectListItem() { Text = "Select a State" })
+            @Html.Application_Text_Box("ResidenceZipCode", "Zip Code")
+
+            <div class="row form-group">
+                <div class="col-md-3 text-right">
+                    &nbsp;
+                </div>
+                <div class="col-md-9">
+                    <label class="checkbox-inline control-label">
+                        <input type="checkbox" id="chkDifferentMailingAddress" />
+                        My Mailing Address is different
+                    </label>
+                </div>
+            </div>
+            <div id="divDifferentMailingAddress" class="hidden">
+                <div class="col-md-9 col-md-offset-3 h4">Mailing Address</div>
+                @Html.Application_Text_Box("MailingStreet", "Mailing Address")
+                @Html.Application_Text_Box("MailingCity", "Mailing City")
+                @Html.Application_Dropdown_List("MailingState", "Mailing State", StateListItems, new SelectListItem() { Text = "Select a State" })
+                @Html.Application_Text_Box("MailingZipCode", "Mailing Zip Code")
+                @*<div class="col-md-3 col-md-offset-3 bottom10 application-hr"></div>*@
+            </div>
+
+            @Html.Application_Text_Box("PrimaryPhone", "Primary Phone")
+            @Html.Application_Text_Box("SecondaryPhone", "Alternate Phone")
+
+
+            <div id="divOwnershipStatus" class="row form-group">
+                <div class="col-md-3 text-right control-label">
+                    <label class="control-label">Ownership Status</label>
+                </div>
+                <div class="col-md-9">
+                    @Html.Application_Radio_Button("rbOwnershipStatusOwn", "rbOwnershipStatus", "Own", "Own")
+                    @Html.Application_Radio_Button("rbOwnershipStatusRent", "rbOwnershipStatus", "Rent", "Rent")
+                    <div class="invalid-feedback hidden text-danger">Select one</div>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-md-3 text-right">
+                    <label class="control-label">Your Time at This Address</label>
+                </div>
+                <div id="divYearsAtAddress" class="col-md-1">
+                    <label class="control-label">
+                        <input type="text" id="txtYearsAtAddress" name="txtYearsAtAddress" class="text-input form-control" formkey="txtYearsAtAddress" />
+                        Years
+                    </label>
+                    <div class="invalid-feedback hidden text-danger">Required</div>
+                </div>
+                <div id="divMonthsAtAddress" class="col-md-1">
+                    <label class="control-label"><input type="text" id="txtMonthsAtAddress" name="txtMonthsAtAddress" class="text-input form-control" formkey="txtMonthsAtAddress" />Months</label>
+                    <div class="invalid-feedback hidden text-danger">Required</div>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset id="fldCoApplicant" class="container hidden">
+            <legend>Co-Applicant Information</legend>
+
+            @Html.Application_Text_Box("CoApplicantResidenceStreet", "Address")
+            @Html.Application_Text_Box("CoApplicantResidenceCity", "City")
+            @Html.Application_Text_Box("CoApplicantResidenceCountry", "Country", value: "USA")
+            @Html.Application_Dropdown_List("CoApplicantResidenceState", "State", StateListItems, new SelectListItem() { Text = "Select a State" })
+            @Html.Application_Text_Box("CoApplicantResidenceZipCode", "Zip Code")
+
+            <div class="row form-group">
+                <div class="col-md-3 text-right">
+                    &nbsp;
+                </div>
+                <div class="col-md-9">
+                    <label class="checkbox-inline control-label">
+                        <input type="checkbox" id="chkCoApplicantDifferentMailingAddress" />
+                        Co-Borrower's Mailing Address is different
+                    </label>
+                </div>
+            </div>
+            <div id="divCoApplicantDifferentMailingAddress" class="hidden">
+                @Html.Application_Text_Box("CoApplicantMailingStreet", "Mailing Address")
+                @Html.Application_Text_Box("CoApplicantMailingCity", "Mailing City")
+                @Html.Application_Dropdown_List("CoApplicantMailingState", "Mailing State", StateListItems, new SelectListItem() { Text = "Select a State" })
+                @Html.Application_Text_Box("CoApplicantMailingZipCode", "Mailing Zip Code")
+            </div>
+
+            @Html.Application_Text_Box("CoApplicantPrimaryPhone", "Primary Phone")
+            @Html.Application_Text_Box("CoApplicantSecondaryPhone", "Alternate Phone")
+
+
+            <div id="divCoApplicantOwnershipStatus" class="row form-group">
+                <div class="col-md-3 text-right">
+                    <label class="control-label">Ownership Status</label>
+                </div>
+                <div class="col-md-9">
+                    @Html.Application_Radio_Button("rbCoApplicantOwnershipStatusOwn", "rbCoApplicantOwnershipStatus", "Own", "Own")
+                    @Html.Application_Radio_Button("rbCoApplicantOwnershipStatusRent", "rbCoApplicantOwnershipStatus", "Rent", "Rent")
+                    <div class="invalid-feedback hidden text-danger">Choose One</div>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-md-3 text-right">
+                    <label class="control-label">Time at This Address</label>
+                </div>
+                <div id="divCoApplicantYearsAtAddress" class="col-md-1">
+                    <label class="control-label"><input type="text" id="txtCoApplicantYearsAtAddress" name="txtCoApplicantYearsAtAddress" class="text-input form-control" formkey="txtCoApplicantYearsAtAddress" />Years</label>
+                    <div class="invalid-feedback hidden text-danger">Required</div>
+                </div>
+                <div id="divCoApplicantMonthsAtAddress" class="col-md-1">
+                    <label class="control-label"><input type="text" id="txtCoApplicantMonthsAtAddress" name="txtCoApplicantMonthsAtAddress" class="text-input form-control" formkey="txtCoApplicantMonthsAtAddress" />Months</label>
+                    <div class="invalid-feedback hidden text-danger">Required</div>
+                </div>
+            </div>
+        </fieldset>
+
+    </form>
+
+    @Html.Application_Navigation_Buttons(
+        new CustomHelpers.NavigationButton() { EnableValidation = false, PageId = "PersonalInfoPage01" },
+        new CustomHelpers.NavigationButton() { EnableValidation = true, PageId = "PropertyInfo" }
+   )
+</div>
+
+

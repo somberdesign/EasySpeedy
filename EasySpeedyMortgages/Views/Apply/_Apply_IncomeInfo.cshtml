@@ -1,0 +1,20 @@
+﻿@using EasySpeedyMortgages.Classes
+@using EasySpeedyMortgages.Models.ViewModels
+
+
+<form id="frmIncomeInfo" class="container">
+
+    <fieldset id="fsBorrowerIncome" class="">
+        <legend>Borrower Income</legend>
+        <a class="btn btn-link" onclick="CreateIncomeTypeControls('Borrower');">Add</a>
+        <div id="divBorrowerIncome"></div>
+    </fieldset>
+</form>
+<hr />
+@*@Html.Partial(@"~\Views\Apply\_Income_Employment.cshtml", new IncomeViewModel(EsmGlobals.EsmApplicantType.Borrower))*@
+
+@Html.Application_Navigation_Buttons(
+    new CustomHelpers.NavigationButton() { EnableValidation = false, PageId = "ExpensesInfo" },
+    new CustomHelpers.NavigationButton() { PageId = "SubmitApp" }
+)
+

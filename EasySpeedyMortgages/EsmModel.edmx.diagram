@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="edda400134bd4c759364bcb3d5240a85" Name="Diagram1" ZoomLevel="73">
+        <EntityTypeShape EntityType="EasySpeedyMortgagesModel.Address" Width="1.5" PointX="5.375" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasySpeedyMortgagesModel.Applicant" Width="1.5" PointX="5.625" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasySpeedyMortgagesModel.Application" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasySpeedyMortgagesModel.Borrower" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasySpeedyMortgagesModel.Borrowers_Addresses" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasySpeedyMortgagesModel.EmploymentItem" Width="1.5" PointX="2.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasySpeedyMortgagesModel.WizardQuestion" Width="1.5" PointX="5.75" PointY="5.625" IsExpanded="true" />
+        <AssociationConnector Association="EasySpeedyMortgagesModel.FK_Borrowers_Addresses_Addresses" ManuallyRouted="false" />
+        <AssociationConnector Association="EasySpeedyMortgagesModel.FK_Applications_Borrowers" ManuallyRouted="false" />
+        <AssociationConnector Association="EasySpeedyMortgagesModel.FK_Borrowers_Addresses_Borrowers" ManuallyRouted="false" />
+        <AssociationConnector Association="EasySpeedyMortgagesModel.CoBorrowers" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="EasySpeedyMortgagesModel.Setting" Width="1.5" PointX="6.5" PointY="3.5" />
+        <EntityTypeShape EntityType="EasySpeedyMortgagesModel.PhoneNumber" Width="1.5" PointX="8.625" PointY="6" />
+        <EntityTypeShape EntityType="EasySpeedyMortgagesModel.Officer" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="EasySpeedyMortgagesModel.Officers_PhoneNumbers" Width="1.5" PointX="10.875" PointY="3.5" />
+        <AssociationConnector Association="EasySpeedyMortgagesModel.FK_Officers_PhoneNumbers_Officers" />
+        <AssociationConnector Association="EasySpeedyMortgagesModel.FK_Officers_PhoneNumbers_PhoneNumbers" />
+        <EntityTypeShape EntityType="EasySpeedyMortgagesModel.CreditQuality" Width="1.5" PointX="8.375" PointY="9.75" />
+        <EntityTypeShape EntityType="EasySpeedyMortgagesModel.InitialBorrowerInfo" Width="1.5" PointX="10.625" PointY="9" />
+        <EntityTypeShape EntityType="EasySpeedyMortgagesModel.LoanType" Width="1.5" PointX="8.375" PointY="12.75" />
+        <EntityTypeShape EntityType="EasySpeedyMortgagesModel.EmailLog" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="EasySpeedyMortgagesModel.ShortApplication" Width="1.5" PointX="3.375" PointY="10.75" />
+        <EntityTypeShape EntityType="EasySpeedyMortgagesModel.v_initial_borrower_info" Width="1.5" PointX="5.375" PointY="10.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

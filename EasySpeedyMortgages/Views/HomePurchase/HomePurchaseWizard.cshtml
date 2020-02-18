@@ -1,0 +1,692 @@
+﻿
+@{
+    ViewBag.Title = "HomePurchaseWizard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Action = Request.Params["action"];
+}
+
+@section scripts {<script type="text/javascript">
+        var hpw_action = '@Action';
+</script>}
+
+@section styles {
+    /* h3 {left: 25px !important;} */
+    .text-input {
+    color: #000;
+    padding-top: 5px;
+    }
+    .hpw-select-div {
+    margin-left:auto;
+    margin-right:auto;
+    }
+}
+
+@section head_bottom {
+    @Scripts.Render("~/Scripts/jquery.steps.js")
+    @Styles.Render("~/Content/jquery.steps.css")
+    @Styles.Render("~/Content/HomePurchaseWizard.css")
+}
+
+
+<div id="divShowValues" style="display:none;"></div>
+
+<div id="divLoanType" style="hidden">
+    <h3>Loan Type</h3>
+    <section>
+        <input type="hidden" class="loan-type">
+
+        <div id="homerefinance" class="appbox home-refinance loan-type">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/refinance.png" width="116" height="91"></div>
+            <div class="txt">Home Refinance</div>
+        </div>
+
+        <div id="homepurchase" class="appbox home-refinance active loan-type">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/homePurchase.png" width="107" height="91"></div>
+            <div class="txt">Home Purchase</div>
+        </div>
+
+        <div id="homeequity" class="appbox home-equity loan-type">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/equity.png" width="116" height="91"></div>
+            <div class="txt">Home Equity</div>
+        </div>
+        <div class="clr"></div>
+    </section>
+</div>
+
+<form id="frmHomeRefinance" style="display:none;padding-top:50px;">
+    <h3>Property Type</h3>
+    <section>
+        <div class="appbox image-click" formkey="property-type" formvalue="singlefamily">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/PropertyType/singlefamily.png" width="116" height="91"></div>
+            <div class="txt">Single Family</div>
+        </div>
+        <div class="appbox image-click" formkey="property-type" formvalue="multifamily">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/PropertyType/multifamily.png" width="116" height="91"></div>
+            <div class="txt">Multi Family</div>
+        </div>
+        <div class="appbox image-click" formkey="property-type" formvalue="condominium">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/PropertyType/condominium.png" width="116" height="91"></div>
+            <div class="txt">Condominium</div>
+        </div>
+        <div class="appbox image-click" formkey="property-type" formvalue="townhouse">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/PropertyType/townhouse.png" width="116" height="91"></div>
+            <div class="txt">Townhouse</div>
+        </div>
+        <div class="appbox image-click" formkey="property-type" formvalue="manufactured">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/PropertyType/manufacturedhome.png" width="116" height="91"></div>
+            <div class="txt">Manufactured Home</div>
+        </div>
+    </section>
+
+    <h3>Property Use</h3>
+    <section>
+        <div id="primary_residence" class="appbox image-click" formkey="property-use" formvalue="residence">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/PropertyUse/primary_residence.png" width="116" height="91"></div>
+            <div class="txt">Primary Residence</div>
+        </div>
+        <div id="vacation_home" class="appbox image-click" formkey="property-use" formvalue="vacationhome">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/PropertyUse/vacation_home.png" width="116" height="91"></div>
+            <div class="txt">Vacation Home</div>
+        </div>
+        <div id="investment" class="appbox image-click" formkey="property-use" formvalue="investment">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/PropertyUse/investment.png" width="116" height="91"></div>
+            <div class="txt">Investment</div>
+        </div>
+    </section>
+
+    <h3>How Is Your Credit?</h3>
+    <section>
+        <div class="appbox image-click" formkey="credit-history" formvalue="excellent">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/Credit/excellent.png" width="116" height="91"></div>
+            <div class="txt">Excellent</div>
+        </div>
+        <div class="appbox image-click" formkey="credit-history" formvalue="verygood">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/Credit/very_good.png" width="116" height="91"></div>
+            <div class="txt">Very Good</div>
+        </div>
+        <div class="appbox image-click" formkey="credit-history" formvalue="good">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/Credit/good.png" width="116" height="91"></div>
+            <div class="txt">Good</div>
+        </div>
+        <div class="appbox image-click" formkey="credit-history" formvalue="fair">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/Credit/fair.png" width="116" height="91"></div>
+            <div class="txt">Fair</div>
+        </div>
+        <div class="appbox image-click" formkey="credit-history" formvalue="poor">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/Credit/poor.png" width="116" height="91"></div>
+            <div class="txt">Poor</div>
+        </div>
+    </section>
+
+    <h3>Military Service?</h3>
+    <section>
+        <div class="appbox image-click" formkey="military-service" formvalue="yes">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/yes.png" width="116" height="91"></div>
+            <div class="txt">Yes</div>
+        </div>
+        <div class="appbox image-click" formkey="military-service" formvalue="no">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/no.png" width="116" height="91"></div>
+            <div class="txt">No</div>
+        </div>
+    </section>
+
+    <h3>Tell Us About Your Needs</h3>
+    <section>
+        <div class="hpw-select-div">
+            <select name="RefinanceLoanPurpose" id="RefinanceLoanPurpose" class="select-input" formkey="loan-purpose">
+                <option value="" selected="selected">Loan Purpose</option>
+                <option value="Lower Interest Rate">Lower Interest Rate</option>
+                <option value="Lower Monthly Payment">Lower Monthly Payment</option>
+                <option value="Debt Consolidation">Debt Consolidation</option>
+                <option value="Change Rate / Term">Change Rate / Term</option>
+                <option value="Home Improvement">Home Improvement</option>
+                <option value="Take Cash Out">Take Cash Out</option>
+            </select>
+        </div><div class="hpw-select-div">
+            <select id="RefinancePropertyValue" name="RefinancePropertyValue" class="select-input" formkey="property-value">
+                <option value="" selected="selected">Estimated Property Value</option>
+            </select>
+        </div><div class="hpw-select-div">
+            <select id="RefinanceFirstBalance" name="RefinanceFirstBalance" class="select-input" formkey="mortgage-balance-one">
+                <option value="" selected="selected">1st Mortgage Balance</option>
+            </select>
+        </div><div class="hpw-select-div">
+            <select id="RefinanceFirstRate" name="RefinanceFirstRate" class="select-input" formkey="mortgage-rate-one">
+                <option value="Select One" selected="selected">1st Mortgage Interest Rate</option>
+            </select>
+        </div><div class="hpw-select-div">
+            <select id="RefinanceShowMtg2LoanType" class="show-mortgage-two select-input">
+                <option value="">Do you have a 2nd Mortgage?</option>
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+        </div>
+            <div class="divSecondMortgage" style="display: none;">
+                <select id="RefinanceSecondBalance" name="MortgageBalanceTwo" class="mortgage-balance-2 select-input" formkey="mortgage-balance-two">
+                    <option value="" selected="selected">2nd Mortgage Balance</option>
+                </select>
+            </div>
+            <div class="divSecondMortgage hpw-select-div" style="display: none;">
+                <select id="RefinanceSecondRate" name="RefinanceSecondRate" class="rate-2 select-input" formkey="mortgage-rate-two">
+                    <option value="Select One" selected="selected">2nd Mortgage Interest Rate</option>
+                </select>
+            </div>
+            <div class="hpw-select-div">
+                <input name="RefinanceAdditionalCash" id="RefinanceAdditionalCash" value="" placeholder="Additional Cash Out (optional)" type="text" class="text-input" formkey="additional-cash">
+            </div>
+    </section>
+
+    <h3>Tell Us About Yourself</h3>
+    <section>
+        <div class="hpw-select-div">
+            <select id="RefinanceLatePayments" class="select-input" formkey="late-payments">
+                <option value="">Any Late Mortgage Payments?</option>
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+        </div><div class="hpw-select-div">
+            <select id="RefinanceForeclosure" class="select-input" formkey="foreclosure">
+                <option value="">Any Foreclosures?</option>
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+        </div><div class="hpw-select-div">
+            <select id="RefinanceFhaLoan" class="select-input" formkey="fha-loan">
+                <option value="">Do You Currently Have An FHA Loan?</option>
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+        </div><div class="hpw-select-div">
+            <select id="RefinanceBankruptcy" class="select-input" formkey="bankruptcy">
+                <option value="" selected="selected">Bankruptcy In Last 7 Years?</option>
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+        </div><div class="hpw-select-div">
+            <select id="RefinanceHouseholdIncome" class="select-input" formkey="household-income">
+                <option value="" selected="selected">Annual Household Income</option>
+                <option>$0 - $30,000</option>
+                <option>$30,001 - $45,000</option>
+                <option>$45,001 - $60,000</option>
+                <option>$60,001 - $75,000</option>
+                <option>$75,001 - $90,000</option>
+                <option>$90,001 - $105,000</option>
+                <option>$105,001 - $120,000</option>
+                <option>$120,001 - $135,000</option>
+                <option>$135,001 - $150,000</option>
+                <option>+$150,001</option>
+            </select>
+        </div><div class="hpw-select-div">
+            <select id="RefinanceEmploymentStatus"  class="select-input" formkey="employment-status">
+                <option value="" selected="selected">Employment Status</option>
+                <option value="Employed">Employed</option>
+                <option value="Self Employed">Self Employed</option>
+                <option value="Retired">Retired</option>
+                <option value="Unemployed">Unemployed</option>
+            </select>
+        </div><div class="hpw-select-div">
+            <select id="RefinanceMonthlyPayments" class="select-input" formkey="monthly-payments">
+                <option value="" selected="selected">Monthly Debt Payments</option>
+                <option value="$0-$500">$0 - $500</option>
+                <option value="$501-$1,000">$501 - $1,000</option>
+                <option value="$1,001-$1,500">$1,001 - $1,500</option>
+                <option value="$1,501 - $2,000">$1,501 - $2,000</option>
+                <option value="$2,000-$3,000">$2,000 - $3,000</option>
+                <option value="$3,000 - $5,000">$3,000 - $5,000</option>
+                <option value="$5,000+">$5,000+</option>
+            </select>
+        </div>
+    </section>
+
+    <h3 class="property-zip-title">Property ZIP</h3>
+    <section>
+        <input id="RefinanceAddress" value="" placeholder="Property Address (optional)" class="text-input property-address" style="display:none;" formkey="property-address">
+        <input id="RefinanceZip" value="" placeholder="Property Zip (optional)" class="property-zip text-input" formkey="property-zip">
+        <input id="RefinancePropertyCity" type="text" class="text-input property-city" style="display:none;" formkey="property-city">
+        <input id="RefinancePropertyState" type="text" class="text-input property-state" style="display:none;" formkey="property-state">
+    </section>
+
+    <h3>Contact Information</h3>
+    <section>
+        <div class="hpw-select-div">
+            <select id="RefinanceContactTime" class="select-input" formkey="contact-time">
+                <option value="Select One" selected="selected">Best Time To Contact</option>
+                <option value="ASAP">ASAP</option>
+                <option value="Afternoon">Afternoon</option>
+                <option value="Morning">Morning</option>
+                <option value="Evening">Evening</option>
+            </select>
+        </div><div class="hpw-select-div">
+            <input id="RefinanceFirstName" type="text" placeholder="First Name" class="text-input" formkey="first-name">
+        </div><div class="hpw-select-div">
+            <input id="RefinanceLastName" type="text" placeholder="Last Name" class="text-input" formkey="last-name">
+        </div><div class="hpw-select-div">
+            <input id="RefinanceEmailAddress" type="text" placeholder="Email" class="text-input" formkey="email-address">
+        </div><div class="hpw-select-div">
+            <input id="RefinancePhone" type="text" placeholder="Phone" class="text-input" formkey="phone">
+        </div><div class="hpw-select-div">
+            <input id="RefinanceAltPhone" type="text" placeholder="Alternate Phone (optional)" class="text-input" formkey="alt-phone">
+        </div>
+    </section>
+</form>
+
+<form id="frmHomePurchase" style="display:none;padding-top:50px;">
+    <h3>Property Type</h3>
+    <section>
+        <div class="appbox image-click" formkey="property-type" formvalue="singlefamily">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/PropertyType/singlefamily.png" width="116" height="91"></div>
+            <div class="txt">Single Family</div>
+        </div>
+        <div class="appbox image-click" formkey="property-type" formvalue="multifamily">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/PropertyType/multifamily.png" width="116" height="91"></div>
+            <div class="txt">Multi Family</div>
+        </div>
+        <div class="appbox image-click" formkey="property-type" formvalue="condominium">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/PropertyType/condominium.png" width="116" height="91"></div>
+            <div class="txt">Condominium</div>
+        </div>
+        <div class="appbox image-click" formkey="property-type" formvalue="townhouse">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/PropertyType/townhouse.png" width="116" height="91"></div>
+            <div class="txt">Townhouse</div>
+        </div>
+        <div class="appbox image-click" formkey="property-type" formvalue="manufactured">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/PropertyType/manufacturedhome.png" width="116" height="91"></div>
+            <div class="txt">Manufactured Home</div>
+        </div>
+
+    </section>
+
+    <h3>Property Use</h3>
+    <section>
+        <input type="hidden" class="property-use">
+        <div id="primary_residence" class="appbox image-click" formkey="property-use" formvalue="residence">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/PropertyUse/primary_residence.png" width="116" height="91"></div>
+            <div class="txt">Primary Residence</div>
+        </div>
+        <div id="vacation_home" class="appbox image-click" formkey="property-use" formvalue="vacationhome">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/PropertyUse/vacation_home.png" width="116" height="91"></div>
+            <div class="txt">Vacation Home</div>
+        </div>
+        <div id="investment" class="appbox image-click" formkey="property-use" formvalue="investment">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/PropertyUse/investment.png" width="116" height="91"></div>
+            <div class="txt">Investment</div>
+        </div>
+    </section>
+
+    <h3>How Is Your Credit?</h3>
+    <section>
+        <div class="appbox image-click" formkey="credit-history" formvalue="excellent">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/Credit/excellent.png" width="116" height="91"></div>
+            <div class="txt">Excellent</div>
+        </div>
+        <div class="appbox image-click" formkey="credit-history" formvalue="verygood">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/Credit/very_good.png" width="116" height="91"></div>
+            <div class="txt">Very Good</div>
+        </div>
+        <div class="appbox image-click" formkey="credit-history" formvalue="good">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/Credit/good.png" width="116" height="91"></div>
+            <div class="txt">Good</div>
+        </div>
+        <div class="appbox image-click" formkey="credit-history" formvalue="fair">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/Credit/fair.png" width="116" height="91"></div>
+            <div class="txt">Fair</div>
+        </div>
+        <div class="appbox image-click" formkey="credit-history" formvalue="poor">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/Credit/poor.png" width="116" height="91"></div>
+            <div class="txt">Poor</div>
+        </div>
+    </section>
+
+    <h3>Have You Already Found a Home?</h3>
+    <section>
+        <div class="hpw-select-div">
+            <select id="ddlPurchaseFoundAHome" class="select-input" formkey="found-a-home">
+                <option value="">Already Found a Home?</option>
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+        </div><div class="hpw-select-div">
+            <select id="ddlPurchasePurchasePrice" class="select-input" formkey="purchase-price">
+                <option value="">Select Purchase Price</option>
+            </select>
+        </div>
+    </section>
+
+    <h3>Down Payment</h3>
+    <section>
+        <div class="appbox image-click" formkey="downpayment" formvalue="0%">
+            <div class="appicon">
+                <img src="~/Media/HomePurchaseWizard/DownPayment/0down.png" /></div>
+            <div class="txt">0% VA/USDA</div>
+        </div>
+        <div class="appbox image-click" formkey="downpayment" formvalue="3%">
+            <div class="appicon">
+                <img src="~/Media/HomePurchaseWizard/DownPayment/3down.png" /></div>
+            <div class="txt">3% Conv</div>
+        </div>
+        <div class="appbox image-click" formkey="downpayment" formvalue="3.5%">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/DownPayment/35down.png" /></div>
+            <div class="txt">3.5% FHA</div>
+        </div>
+        <div class="appbox image-click" formkey="downpayment" formvalue="5%">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/DownPayment/5down.png" /></div>
+            <div class="txt">5%</div>
+        </div>
+        <div class="appbox image-click" formkey="downpayment" formvalue="10%">
+            <div class="appicon">
+                <img src="~/Media/HomePurchaseWizard/DownPayment/10down.png" /></div>
+            <div class="txt">10%</div>
+        </div>
+        <div class="appbox image-click" formkey="downpayment" formvalue="20%">
+            <div class="appicon">
+                <img src="~/Media/HomePurchaseWizard/DownPayment/20down.png" /></div>
+            <div class="txt">20%</div>
+        </div>
+    </section>
+
+    <h3>Military Service?</h3>
+    <section>
+        <div class="appbox image-click" formkey="military-service" formvalue="yes">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/yes.png" width="116" height="91"></div>
+            <div class="txt">Yes</div>
+        </div>
+        <div class="appbox image-click" formkey="military-service" formvalue="no">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/no.png" width="116" height="91"></div>
+            <div class="txt">No</div>
+        </div>
+    </section>
+
+    <h3>You Expect to Buy Within?</h3>
+    <section>
+        <div class="appbox image-click" formkey="buy-within" formvalue="30-45 days">
+            <div class="appicon">
+                <img src="~/Media/HomePurchaseWizard/BuyWithin/days.png" />
+            </div>
+            <div class="txt">30-45 Days</div>
+        </div>
+        <div class="appbox image-click" formkey="buy-within" formvalue="2-3 months">
+            <div class="appicon">
+                <img src="~/Media/HomePurchaseWizard/BuyWithin/months.png" />
+            </div>
+            <div class="txt">2-3 Months</div>
+        </div>
+        <div class="appbox image-click" formkey="buy-within" formvalue="6 months">
+            <div class="appicon">
+                <img src="~/Media/HomePurchaseWizard/BuyWithin/months-2.png" />
+            </div>
+            <div class="txt">6 Months</div>
+        </div>
+        <div class="appbox image-click" formkey="buy-within" formvalue="longer">
+            <div class="appicon">
+                <img src="~/Media/HomePurchaseWizard/BuyWithin/year.png" />
+            </div>
+            <div class="txt">Longer</div>
+        </div>
+    </section>
+
+
+
+    <h3>Tell Us About Yourself</h3>
+    <section>
+        <div class="hpw-select-div">
+            <select id="ddlPurchaseFirstTime" class="select-input" formkey="first-time">
+                <option value="">First Time Home Buyer?</option>
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+        </div><div class="hpw-select-div">
+    <select id="ddlPurchaseBankruptcy" class="select-input" formkey="bankruptcy">
+        <option value="" selected="selected">Bankruptcy In Last 7 Years?</option>
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+    </select>
+</div><div class="hpw-select-div">
+    <select id="ddlPurchaseIncome" class="select-input" formkey="household-income">
+        <option value="" selected="selected">Annual Household Income</option>
+        <option>$0 - $30,000</option>
+        <option>$30,001 - $45,000</option>
+        <option>$45,001 - $60,000</option>
+        <option>$60,001 - $75,000</option>
+        <option>$75,001 - $90,000</option>
+        <option>$90,001 - $105,000</option>
+        <option>$105,001 - $120,000</option>
+        <option>$120,001 - $135,000</option>
+        <option>$135,001 - $150,000</option>
+        <option>+$150,001</option>
+    </select>
+</div><div class="hpw-select-div">
+    <select id="ddlPurchaseEmployment" class="select-input" formkey="employment-status">
+        <option value="" selected="selected">Employment Status</option>
+        <option value="Employed">Employed</option>
+        <option value="Self Employed">Self Employed</option>
+        <option value="Retired">Retired</option>
+        <option value="Unemployed">Unemployed</option>
+    </select>
+        </div><div class="hpw-select-div">
+            <select id="ddlPurchaseMonthlyPayments" class="select-input" formkey="monthly-payments">
+                <option value="" selected="selected">Monthly Debt Payments</option>
+                <option value="$0-$500">$0 - $500</option>
+                <option value="$501-$1,000">$501 - $1,000</option>
+                <option value="$1,001-$1,500">$1,001 - $1,500</option>
+                <option value="$1,501 - $2,000">$1,501 - $2,000</option>
+                <option value="$2,000-$3,000">$2,000 - $3,000</option>
+                <option value="$3,000 - $5,000">$3,000 - $5,000</option>
+                <option value="$5,000+">$5,000+</option>
+            </select>
+        </div>
+    </section>
+
+    <h3 class="property-zip-title">Property ZIP</h3>
+    <section>
+        <input value="" placeholder="Property Address (optional)" class="text-input property-address" style="display:none;" formkey="property-address">
+        <input value="" placeholder="Property Zip (optional)" class="property-zip text-input" formkey="property-zip">
+        <input type="text" class="text-input property-city" style="display:none;" formkey="property-city">
+        <input type="text" class="text-input property-state" style="display:none;" formkey="property-state">
+    </section>
+
+    <h3>Contact Information</h3>
+    <section>
+        <div class="hpw-select-div">
+            <select id="ddlPurchaseContactTime" class="select-input" formkey="contact-time">
+                <option value="Select One" selected="selected">Best Time To Contact</option>
+                <option value="ASAP">ASAP</option>
+                <option value="Afternoon">Afternoon</option>
+                <option value="Morning">Morning</option>
+                <option value="Evening">Evening</option>
+            </select>
+        </div><div class="hpw-select-div">
+            <input id="txtPurchaseFirstName" type="text" placeholder="First Name" class="text-input" formkey="first-name">
+        </div><div class="hpw-select-div">
+            <input id="txtPurchaseLastName" type="text" placeholder="Last Name" class="text-input" formkey="last-name">
+        </div><div class="hpw-select-div">
+            <input id="txtPurchaseEmail" type="text" placeholder="Email" class="text-input" formkey="email-address">
+        </div><div class="hpw-select-div">
+            <input id="txtPurchasePhone" type="text" placeholder="Phone" class="text-input" formkey="phone">
+        </div><div class="hpw-select-div">
+            <input type="text" placeholder="Alternate Phone (optional)" class="text-input" formkey="alt-phone">
+        </div>
+    </section>
+</form>
+
+<form id="frmHomeEquity" style="display:none; padding-top:50px;">
+    <h3>Property Type</h3>
+    <section>
+        <div class="appbox image-click" formkey="property-type" formvalue="singlefamily">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/PropertyType/singlefamily.png" width="116" height="91"></div>
+            <div class="txt">Single Family</div>
+        </div>
+        <div class="appbox image-click" formkey="property-type" formvalue="multifamily">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/PropertyType/multifamily.png" width="116" height="91"></div>
+            <div class="txt">Multi Family</div>
+        </div>
+        <div class="appbox image-click" formkey="property-type" formvalue="condominium">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/PropertyType/condominium.png" width="116" height="91"></div>
+            <div class="txt">Condominium</div>
+        </div>
+        <div class="appbox image-click" formkey="property-type" formvalue="townhouse">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/PropertyType/townhouse.png" width="116" height="91"></div>
+            <div class="txt">Townhouse</div>
+        </div>
+        <div class="appbox image-click" formkey="property-type" formvalue="manufactured">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/PropertyType/manufacturedhome.png" width="116" height="91"></div>
+            <div class="txt">Manufactured Home</div>
+        </div>
+
+    </section>
+
+    <h3>Property Use</h3>
+    <section>
+        <div id="primary_residence" class="appbox image-click" formkey="property-use" formvalue="residence">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/PropertyUse/primary_residence.png" width="116" height="91"></div>
+            <div class="txt">Primary Residence</div>
+        </div>
+        <div id="vacation_home" class="appbox image-click" formkey="property-use" formvalue="vacationhome">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/PropertyUse/vacation_home.png" width="116" height="91"></div>
+            <div class="txt">Vacation Home</div>
+        </div>
+        <div id="investment" class="appbox image-click" formkey="property-use" formvalue="investment">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/PropertyUse/investment.png" width="116" height="91"></div>
+            <div class="txt">Investment</div>
+        </div>
+    </section>
+
+    <h3>How Is Your Credit?</h3>
+    <section>
+        <div class="appbox image-click" formkey="credit-history" formvalue="excellent">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/Credit/excellent.png" width="116" height="91"></div>
+            <div class="txt">Excellent</div>
+        </div>
+        <div class="appbox image-click" formkey="credit-history" formvalue="verygood">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/Credit/very_good.png" width="116" height="91"></div>
+            <div class="txt">Very Good</div>
+        </div>
+        <div class="appbox image-click" formkey="credit-history" formvalue="good">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/Credit/good.png" width="116" height="91"></div>
+            <div class="txt">Good</div>
+        </div>
+        <div class="appbox image-click" formkey="credit-history" formvalue="fair">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/Credit/fair.png" width="116" height="91"></div>
+            <div class="txt">Fair</div>
+        </div>
+        <div class="appbox image-click" formkey="credit-history" formvalue="poor">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/Credit/poor.png" width="116" height="91"></div>
+            <div class="txt">Poor</div>
+        </div>
+    </section>
+
+    <h3>Military Service?</h3>
+    <section>
+        <div class="appbox image-click" formkey="military-service" formvalue="yes">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/yes.png" width="116" height="91"></div>
+            <div class="txt">Yes</div>
+        </div>
+        <div class="appbox image-click" formkey="military-service" formvalue="no">
+            <div class="appicon"><img src="~/Media/HomePurchaseWizard/no.png" width="116" height="91"></div>
+            <div class="txt">No</div>
+        </div>
+    </section>
+
+    <h3>Tell Us About Your Needs</h3>
+    <section>
+        <div class="hpw-select-div">
+            <select id="ddlEquityTypeOfLoan" class="select-input" formkey="type-of-loan">
+                <option value="" selected="selected">Type of Loan Preferred</option>
+                <option value="2nd mortgage">Loan or 2nd Mortgage</option>
+                <option value="line of credit">Line of Credit (HELOC)</option>
+                <option value="not sure">Not Sure</option>
+            </select>
+        </div><div class="hpw-select-div">
+            <select id="ddlEquityLoanPurpose" class="select-input" formkey="loan-purpose">
+                <option value="" selected="selected">Loan Purpose</option>
+                <option value="debt consolidation">Debt Consolidation</option>
+                <option value="home improvement">Home Improvement</option>
+                <option value="take cash out">Take Cash Out</option>
+            </select>
+        </div><div class="hpw-select-div">
+                  <input id="txtEquityPurchaseYear" value="" placeholder="Purchase Year (YYYY)" type="text" class="text-input" formkey="purchase-year">
+        </div><div class="hpw-select-div">
+            <select id="ddlEquityPropertyValue" class="select-input" formkey="property-value">
+                <option value="" selected="selected">Estimated Property Value</option>
+            </select>
+        </div><div class="hpw-select-div">
+            <select id="ddlEquityMortgageBalanceOne" class="select-input" formkey="mortgage-balance-one">
+                <option value="" selected="selected">1st Mortgage Balance</option>
+            </select>
+        </div><div class="hpw-select-div">
+            <select id="ddlEquityMortgageRateOne" class="select-input" formkey="mortgage-rate-one">
+                <option value="Select One" selected="selected">1st Mortgage Interest Rate</option>
+            </select>
+        </div><div class="hpw-select-div">
+            <select id="ddlEquityShowMtg2LoanType" class="show-mortgage-two">
+                <option value="">Do you have a 2nd Mortgage?</option>
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+        </div>
+        <div class="divSecondMortgage" style="display: none;">
+            <select id="ddlEquityMortgageBalanceTwo" class="select-input" formkey="mortgage-balance-two">
+                <option value="" selected="selected">2nd Mortgage Balance</option>
+            </select>
+        </div>
+        <div class="divSecondMortgage hpw-select-div" style="display: none;">
+            <select id="ddlEquityMortgageRateTwo" class="select-input" formkey="mortgage-rate-two">
+                <option value="Select One" selected="selected">2nd Mortgage Interest Rate</option>
+            </select>
+        </div>
+        <div>
+            <input id="txtEquityAdditionalCash" value="" placeholder="Additional Cash Out (optional)" type="text" class="text-input" formkey="additional-cash">
+        </div>
+
+    </section>
+
+    <h3 class="property-zip-title">Property ZIP</h3>
+    <section>
+        <input value="" placeholder="Property Address (optional)" class="text-input property-address" style="display:none;" formkey="property-address">
+        <input value="" placeholder="Property Zip (optional)" class="property-zip text-input" formkey="property-zip">
+        <input type="text" class="text-input property-city" style="display:none;" formkey="property-city">
+        <input type="text" class="text-input property-state" style="display:none;" formkey="property-state">
+    </section>
+
+    <h3>Contact Information</h3>
+    <section>
+        <div class="hpw-select-div">
+            <select id="ddlEquityContactTime" class="select-input" formkey="contact-time">
+                <option value="Select One" selected="selected">Best Time To Contact</option>
+                <option value="ASAP">ASAP</option>
+                <option value="Afternoon">Afternoon</option>
+                <option value="Morning">Morning</option>
+                <option value="Evening">Evening</option>
+            </select>
+        </div><div class="hpw-select-div">
+            <input id="txtEquityFirstName" type="text" placeholder="First Name" class="text-input" formkey="first-name">
+        </div><div class="hpw-select-div">
+            <input id="txtEquityLastName" type="text" placeholder="Last Name" class="text-input" formkey="last-name">
+        </div><div class="hpw-select-div">
+            <input id="txtEquityEmail" type="text" placeholder="Email" class="text-input" formkey="email-address">
+        </div><div class="hpw-select-div">
+            <input id="txtEquityPhone" type="text" placeholder="Phone" class="text-input" formkey="phone">
+        </div><div class="hpw-select-div">
+            <input type="text" placeholder="Alternate Phone (optional)" class="text-input" formkey="alt-phone">
+        </div>
+    </section>
+</form>
+
+
+
+<!--
+
+    <h3>Found a Home?</h3>
+    <section>
+        <select name="SpecificHome" id="SpecificHome" class="found-a-home select-input">
+            <option value="" selected="selected">Have You Already Found a Home?</option>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select>
+    </section>
+-->
+
+@Scripts.Render("~/Scripts/Views/HomePurchaseWizard.js")
+
+
+
+

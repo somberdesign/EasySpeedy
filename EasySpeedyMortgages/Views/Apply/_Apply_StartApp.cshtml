@@ -1,0 +1,230 @@
+﻿
+@using EasySpeedyMortgages.Classes
+
+
+<div id="divStartAppPage01" class="apply-page hidden">
+    <form id="frmStartAppPage01" class="">
+        <h4 id="hAccess">Accessing Your Application</h4>
+        The information below will be used to allow you to access your application if you do not finish today. We will also provide you with an application confirmation code that will be used to access your application.
+
+        <div class="container border-bottom bottom10">
+            <div id="divStartAppEmailAddress" class="row form-group">
+                <div class="col-md-3 text-right">
+                    <label class="control-label" for="txtStartAppEmailAddress">Email Address</label>
+                </div>
+                <div class="col-md-9">
+                    <input type="email" id="txtStartAppEmailAddress" name="txtStartAppEmailAddress" class="text-input form-control" formkey="txtStartAppEmailAddress" required />
+                    <div class="invalid-feedback hidden text-danger">
+                        <div class="email-addresses-dont-match hidden email-inv-feedback">Email addresses don't match</div>
+                        <div id="divEmailAddressRequired" class="hidden email-inv-feedback text-danger">Required</div>
+                    </div>
+                </div>
+            </div>
+            <br />
+
+            <div id="divStartAppConfirmEmailAddress" class="row form-group">
+                <div class="col-md-3 text-right">
+                    <label class="control-label" for="txtStartAppConfirmEmailAddress">Confirm Email Address</label>
+                </div>
+                <div class="col-md-9">
+                    <input type="email" id="txtStartAppConfirmEmailAddress" name="txtStartAppConfirmEmailAddress" class="text-input form-control" formkey="txtStartAppConfirmEmailAddress" required />
+                    <div class="invalid-feedback hidden text-danger">
+                        <div class="email-addresses-dont-match hidden email-inv-feedback text-danger">Email addresses don't match</div>
+                        <div id="divConfirmEmailAddressRequired" class="hidden email-inv-feedback text-danger">Required</div>
+                    </div>
+                </div>
+            </div>
+            <br />
+
+            <div id="divStartAppDateOfBirth" class="row form-group">
+                <div class="col-md-3 text-right">
+                    <label class="control-label" for="txtStartAppDateOfBirth">Date Of Birth</label>
+                </div>
+                <div class="col-md-9">
+                    <input type="date" id="txtStartAppDateOfBirth" name="txtStartAppDateOfBirth" class="datepicker-input form-control" formkey="txtStartAppDateOfBirth" required />
+                    <div class="invalid-feedback hidden text-danger">Required</div>
+                </div>
+                <br />
+            </div>
+        </div>
+
+        <div id="divLoanType" class="container border-bottom bottom10 top25 form-group">
+            <div class="control-label section-validation-message"><h4>What can we help you with?</h4></div>
+            <div class="invalid-feedback hidden text-danger">Choose one</div>
+            @Html.Application_Radio_Button("rbLoanTypePreQualification", "rbLoanType", "PreQualification", @"<strong>Pre-qualification</strong> - I'm shopping for a home and I don't have an accepted contract with a seller")
+            @Html.Application_Radio_Button("rbLoanTypePurchase", "rbLoanType", "Purchase", @"<strong>Purchase</strong> - I'm purchasing a home and I have an accepted contract with a seller")
+            @Html.Application_Radio_Button("rbLoanTypeRefinanceExisting", "rbLoanType", "RefinanceExisting", @"<strong>Refinance Existing Balance</strong> - I'd like to refinance the existing mortgage balance on my home")
+            @Html.Application_Radio_Button("rbLoanTypeRefinanceCash", "rbLoanType", "RefinanceCash", @"<strong>Refinance to Obtain Cash</strong> - I'd like to refinance my home and obtain cash at closing")
+            @Html.Application_Radio_Button("rbLoanTypeEquity", "rbLoanType", "Equity", @"<strong>Home Equity</strong> - (Home Equity Line of Credit, 2nd Mortgage or Fast Track")
+        </div>
+
+        <div id="divWhoIsApplying" class="container border-bottom bottom10 top25 form-group">
+            <div class="control-label section-validation-message border-0 mb-2"><h4>Who will be applying for this loan?</h4></div>
+            <div class="invalid-feedback hidden text-danger">Choose one</div>
+            @Html.Application_Radio_Button("rbWhoIsApplyingIndividually", "rbWhoIsApplying", "Individually", "I will be applying individually")
+            @Html.Application_Radio_Button("rbWhoIsApplyingSpouse", "rbWhoIsApplying", "Spouse", "I will be applying jointly with my spouse")
+            @Html.Application_Radio_Button("rbWhoIsApplyingAnotherPerson", "rbWhoIsApplying", "AnotherPerson", "I will be applying jointly with another person")
+        </div>
+
+        <div id="divPropertyUse" class="container bottom10 top25 form-group">
+            <div class="control-label section-validation-message border-0 mb-2"><h4>How will you use the home or property you are financing?</h4></div>
+            <div class="invalid-feedback hidden text-danger">Choose one</div>
+            @Html.Application_Radio_Button("rbPropertyUsePrimaryResidence", "rbPropertyUse", "PrimaryResidence", "I will live in this home most of the year")
+            @Html.Application_Radio_Button("rbPropertyUseVacationHome", "rbPropertyUse", "VacationHome", "I will use this home as a vacation property")
+            @Html.Application_Radio_Button("rbPropertyUseRental", "rbPropertyUse", "Rental", "I will rent out this property for income")
+            @Html.Application_Radio_Button("rbPropertyUseVacant", "rbPropertyUse", "Vacant", "The property is vacant land")
+        </div>
+        @Html.Application_Navigation_Buttons(previousButton: null, nextButton: new CustomHelpers.NavigationButton() { PageId = "StartAppPage02" })
+    </form>
+</div>
+
+
+
+<div id="divStartAppPage02" class="apply-page hidden">
+    <form id="frmStartAppPage02">
+        <h4 id="hFinancingDetails">Financing Details</h4>
+        <p>Provide details about the property you wish to finance</p>
+
+        <div class="container border-bottom bottom10">
+            <div id="divStartAppState" class="row form-group">
+                <div class="col-md-3 text-right">
+                    <label class="control-label">State</label>
+                </div>
+                <div class="col-md-9">
+                    <select id="ddlStartAppState" class="select-input form-control" formkey="ddlStartAppState" required>
+                        <option value="">Select a State</option>
+                        <option value="fl" selected="selected">Florida</option>
+                    </select>
+                    <div class="invalid-feedback hidden text-danger">Choose One</div>
+                </div>
+            </div>
+            <br />
+            <div id="divStartAppCounty" class="row form-group">
+                <div class="col-md-3 text-right">
+                    <label class="control-label">County</label>
+                </div>
+                <div class="col-md-9">
+                    <select id="ddlStartAppCounty" class="select-input form-control" formkey="ddlStartAppCounty" required>
+                        <option value="" selected="selected">Select a County</option>
+                        <option value="lake">Lake</option>
+                        <option value="oceola">Oceola</option>
+                        <option value="orange">Orange</option>
+                        <option value="seminole">Seminole</option>
+                    </select>
+                    <div class="invalid-feedback hidden text-danger">Choose One</div>
+                </div>
+            </div>
+            <br />
+            <div id="divStartAppPurchasePrice" class="row form-group">
+                <div class="col-md-3 text-right">
+                    <label class="control-label" for="txtPurchasePrice">Purchase Price</label>
+                </div>
+                <div class="col-md-9">
+                    <input type="text" id="txtPurchasePrice" class="text-input form-control" formkey="txtPurchasePrice" required />
+                    <div class="invalid-feedback hidden text-danger">Required</div>
+                </div>
+            </div>
+            <br />
+            <div id="divStartAppLoanAmount" class="row form-group">
+                <div class="col-md-3 text-right">
+                    <label class="control-label" for="txtLoanAmount">Loan Amount</label>
+                </div>
+                <div class="col-md-9">
+                    <input type="text" id="txtLoanAmount" class="text-input form-control" formkey="txtLoanAmount" required />
+                    <div class="invalid-feedback hidden text-danger">Required</div>
+                </div>
+            </div>
+            <br />
+            <div id="divStartAppEstimatedClosingDate" class="row form-group">
+                <div class="col-md-3 text-right">
+                    <label class="control-label" for="txtEstimatedClosingDate">Estimated Closing Date</label>
+                </div>
+                <div class="col-md-9">
+                    <input type="date" id="txtEstimatedClosingDate" class="text-input datepicker form-control" formkey="txtEstimatedClosingDate" required />
+                    <div class="invalid-feedback hidden text-danger">Required</div>
+                </div>
+            </div>
+            <br />
+            <div id="divStartAppPropertyType" class="row form-group">
+                <div class="col-md-3 text-right">
+                    <label class="control-label" for="txtPropertyType">Property Type</label>
+                </div>
+                <div class="col-md-9">
+                    <select id="ddlPropertyType" class="select-input form-control" formkey="ddlPropertyType" required>
+                        <option value="singleFamilyHome" selected="selected">Single Family Home</option>
+                        <option value="condominium">Condominium</option>
+                        <option value="2Unit">2 Unit</option>
+                        <option value="3Unit">3 Unit</option>
+                        <option value="4Unit">4 Unit</option>
+                        <option value="5OrMoreUnits">5 or More Units</option>
+                        <option value="ManufacturedHome">Manufactured Home</option>
+                        <option value="Coop">Co-op</option>
+                    </select>
+                    <div class="invalid-feedback hidden text-danger">Select One</div>
+                </div>
+            </div>
+            <br />
+            <div id="divStartAppLotSize" class="row form-group">
+                <div class="col-md-3 text-right">
+                    <label class="control-label" for="txtLotSize">Lot Size</label>
+                </div>
+                <div class="col-md-9">
+                    <select id="ddlLotSize" class="select-input form-control" formkey="ddlLotSize" required>
+                        <option value="10AcresOrLess" selected="selected">10 Acres or Less</option>
+                        <option value="MoreThan10Acres">More than 10 Acres</option>
+                    </select>
+                    <div class="invalid-feedback hidden text-danger">Select One</div>
+                </div>
+            </div>
+            <br />
+            <div id="divStartAppBuildingType" class="row form-group">
+                <div class="col-md-3 text-right">
+                    <label class="control-label">Building Type</label>
+                </div>
+                <div class="col-md-9">
+                    <select id="ddlBuildingType" class="select-input form-control" formkey="ddlBuildingType" required>
+                        <option value="freestanding" selected="selected">Freestanding/Detached</option>
+                        <option value="attached">Attached to Another Dwelling</option>
+                    </select>
+                    <div class="invalid-feedback hidden text-danger">Select One</div>
+                </div>
+            </div>
+            <br />
+            <div id="divStartAppPropertyStatus" class="row form-group">
+                <div class="col-md-3 text-right">
+                    <label class="control-label">Property Status</label>
+                </div>
+                <div class="col-md-9">
+                    <select id="ddlPropertyStatus" class="select-input form-control" formkey="ddlPropertyStatus" required>
+                        <option value="existing" selected="selected">Existing Home</option>
+                        <option value="new">New Home</option>
+                    </select>
+                    <div class="invalid-feedback hidden text-danger">Select One</div>
+                </div>
+            </div>
+            <br />
+        </div>
+
+        <div id="divStartAppAdditionalLoan" class="container border-bottom bottom10 form-group">
+            <div class="row">
+                <div class="col-md-9 col-md-offset-2"> <label class="control-label">Will you obtain an additional loan to finance this property?</label></div>
+            </div>
+            <div class="row">
+                <div class="col-md-9 col-md-offset-3">
+                    <select id="ddlAdditionalLoan" class="select-input form-control" formkey="ddlAdditionalLoan" required>
+                        <option value="yes">Yes</option>
+                        <option value="no" selected="selected">No</option>
+                    </select>
+                    <div class="invalid-feedback hidden text-danger">Select One</div>
+                </div>
+            </div>
+        </div>
+        @Html.Application_Navigation_Buttons(
+            previousButton: new CustomHelpers.NavigationButton() { EnableValidation = false, PageId = "StartAppPage01" },
+            nextButton: new CustomHelpers.NavigationButton() { PageId = "PersonalInfoPage01" }
+        )
+    </form>
+</div>
+
+
+

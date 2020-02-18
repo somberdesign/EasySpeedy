@@ -1,0 +1,256 @@
+﻿@using EasySpeedyMortgages.Classes
+
+
+<form id="frmAssetInfo">
+    <div class="container">
+
+        <fieldset>
+            <legend>Types of Assets for Closing Cash</legend>
+            <div class="control-label h4">Check all that apply</div>
+            @Html.Application_Checkbox("DepositAccounts", "Deposit Accounts such as savings, check, money market accounts or CDs", "application-asset-type")
+            @Html.Application_Checkbox("RealEstate", "Sale of other real estate", "application-asset-type")
+            @Html.Application_Checkbox("Investments", "Sale of investments", "application-asset-type")
+            @Html.Application_Checkbox("RetirementAccount", "Withdrawal from a retirement account", "application-asset-type")
+            @Html.Application_Checkbox("Gift", "Gift from a relative", "application-asset-type")
+            @Html.Application_Checkbox("LifeInsurance", "Cash Value of Life Insurance", "application-asset-type")
+            @Html.Application_Checkbox("Borrowed", "Borrowed funds", "application-asset-type")
+            @Html.Application_Checkbox("Other", "Other", "application-asset-type")
+        </fieldset>
+
+        <fieldset id="fsDepositAccounts" class="hidden asset-detail">
+            <legend>Deposit Accounts</legend>
+            <a class="btn btn-link" onclick="CreateDepositAccountControls();">Add</a>
+        </fieldset>
+        <fieldset id="fsRealEstate" class="hidden asset-detail">
+            <legend>Sale of Real Estate</legend>
+            <a class="btn btn-link" onclick="CreateRealEstateControls();">Add</a>
+        </fieldset>
+        <fieldset id="fsInvestments" class="hidden asset-detail">
+            <legend>Investments</legend>
+            <a class="btn btn-link" onclick="CreateInvestmentAssetControls();">Add</a>
+        </fieldset>
+        <fieldset id="fsRetirementAccount" class="hidden asset-detail">
+            <legend>Retirement Account Withdrawl</legend>
+            <div id="divRetirement">
+                <div id="divRetirementAmount" class="row form-group">
+                    <div class="col-md-3 text-right">
+                        <label class="control-label application-textbox-label">How much money do you intend to withdraw from a retirement account?</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="number" id="txtRetirementAmount" formkey="txtRetirementAmount" class="text-input form-control">
+                        <div class="invalid-feedback hidden text-danger">Required</div>
+                    </div>
+                </div>
+                <div id="divRetirementRepay" class="row form-group">
+                    <div class="col-md-3 text-right">
+                        <label class="control-label application-textbox-label">Will you be required to repay the money you withdraw from the retirement account?</label>
+                    </div>
+                    <div class="col-md-3">
+                        <select id="ddlRetirementRepay" class="select-input form-control" formkey="ddlRetirementRepay">
+                            <option value="">Select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                        <div class="invalid-feedback hidden text-danger">Required</div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset id="fsGift" class="hidden asset-detail">
+            <legend>Gift Details</legend>
+            <div id="divGift">
+                <div id="divGiftAmount" class="row form-group">
+                    <div class="col-md-3 text-right"><label class="control-label application-textbox-label">Gift Amount</label></div>
+                    <div class="col-md-3">
+                        <input type="number" id="txtGiftAmount" formkey="txtGiftAmount" class="text-input form-control">
+                        <div class="invalid-feedback hidden text-danger">Required</div>
+                    </div>
+                </div>
+                <div id="divGiftName" class="row form-group">
+                    <div class="col-md-3 text-right"><label class="control-label application-textbox-label">Name</label></div>
+                    <div class="col-md-3">
+                        <input type="text" id="txtGiftName" formkey="txtGiftName" class="text-input form-control">
+                        <div class="invalid-feedback hidden text-danger">Required</div>
+                    </div>
+                </div>
+                <div id="divGiftAddress" class="row form-group">
+                    <div class="col-md-3 text-right"><label class="control-label application-textbox-label">Address</label></div>
+                    <div class="col-md-3">
+                        <input type="text" id="txtGiftAddress" formkey="txtGiftAddress" class="text-input form-control">
+                        <div class="invalid-feedback hidden text-danger">Required</div>
+                    </div>
+                </div>
+                <div id="divGiftCity" class="row form-group">
+                    <div class="col-md-3 text-right"><label class="control-label application-textbox-label">City</label></div>
+                    <div class="col-md-3">
+                        <input type="text" id="txtGiftCity" formkey="txtGiftCity" class="text-input form-control">
+                        <div class="invalid-feedback hidden text-danger">Required</div>
+                    </div>
+                </div>
+                <div id="divGiftState" class="row form-group">
+                    <div class="col-md-3 text-right"><label class="control-label application-textbox-label">State</label></div>
+                    <div class="col-md-3">
+                        <select id="ddlGiftState" class="select-input form-control" formkey="ddlGiftState">
+                            <option value="">State</option>
+                            <option value="al">Alabama</option>
+                            <option value="ak">Alaska</option>
+                            <option value="az">Arizona</option>
+                            <option value="ar">Arkansas</option>
+                            <option value="ca">California</option>
+                            <option value="co">Colorado</option>
+                            <option value="ct">Connecticut</option>
+                            <option value="de">Delaware</option>
+                            <option selected="selected" value="fl">Florida</option>
+                            <option value="ga">Georgia</option>
+                            <option value="hi">Hawaii</option>
+                            <option value="id">Idaho</option>
+                            <option value="il">Illinois</option>
+                            <option value="in">Indiana</option>
+                            <option value="ia">Iowa</option>
+                            <option value="ks">Kansas</option>
+                            <option value="ky">Kentucky</option>
+                            <option value="la">Louisiana</option>
+                            <option value="me">Maine</option>
+                            <option value="md">Maryland</option>
+                            <option value="ma">Massachusetts</option>
+                            <option value="mi">Michigan</option>
+                            <option value="mn">Minnesota</option>
+                            <option value="ms">Mississippi</option>
+                            <option value="mo">Missouri</option>
+                            <option value="mt">Montana</option>
+                            <option value="ne">Nebraska</option>
+                            <option value="nv">Nevada</option>
+                            <option value="nh">New Hampshire</option>
+                            <option value="nj">New Jersey</option>
+                            <option value="nm">New Mexico</option>
+                            <option value="ny">New York</option>
+                            <option value="nc">North Carolina</option>
+                            <option value="nd">North Dakota</option>
+                            <option value="oh">Ohio</option>
+                            <option value="ok">Oklahoma</option>
+                            <option value="or">Oregon</option>
+                            <option value="pa">Pennsylvania</option>
+                            <option value="ri">Rhode Island</option>
+                            <option value="sc">South Carolina</option>
+                            <option value="sd">South Dakota</option>
+                            <option value="tn">Tennessee</option>
+                            <option value="tx">Texas</option>
+                            <option value="ut">Utah</option>
+                            <option value="vt">Vermont</option>
+                            <option value="va">Virginia</option>
+                            <option value="wa">Washington</option>
+                            <option value="wv">West Virginia</option>
+                            <option value="wi">Wisconsin</option>
+                            <option value="wy">Wyoming</option>
+                        </select>
+                        <div class="invalid-feedback hidden text-danger">Required</div>
+                    </div>
+                </div>
+                <div id="divGiftZip" class="row form-group">
+                    <div class="col-md-3 text-right"><label class="control-label application-textbox-label">Zip</label></div>
+                    <div class="col-md-3">
+                        <input type="number" id="txtGiftZip" formkey="txtGiftZip" class="text-input form-control">
+                        <div class="invalid-feedback hidden text-danger">Required</div>
+                    </div>
+                </div>
+                <div id="divGiftPhone" class="row form-group">
+                    <div class="col-md-3 text-right"><label class="control-label application-textbox-label">Phone</label></div>
+                    <div class="col-md-3">
+                        <input type="tel" id="txtGiftPhone" formkey="txtGiftPhone" class="text-input form-control">
+                        <div class="invalid-feedback hidden text-danger">Required</div>
+                    </div>
+                </div>
+                <div id="divGiftRelationship" class="row form-group">
+                    <div class="col-md-3 text-right"><label class="control-label application-textbox-label">Relationship</label></div>
+                    <div class="col-md-3">
+                        <input type="text" id="txtGiftRelationship" formkey="txtGiftRelationship" class="text-input form-control">
+                        <div class="invalid-feedback hidden text-danger">Required</div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset id="fsLifeInsurance" class="hidden asset-detail">
+            <legend>Life Insurance</legend>
+            <div id="divLifeInsurance">
+                <div id="divLifeInsuranceAmount" class="row form-group">
+                    <div class="col-md-3 text-right">
+                        <label class="control-label application-textbox-label">Cash Value</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="number" id="txtLifeInsuranceAmount" formkey="txtLifeInsuranceAmount" class="text-input form-control">
+                        <div class="invalid-feedback hidden text-danger">Required</div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset id="fsBorrowed" class="hidden asset-detail">
+            <legend>Borrowed Funds</legend>
+            <div id="divBorrowed">
+                <div id="divBorrowedAmount" class="row form-group">
+                    <div class="col-md-3 text-right">
+                        <label class="control-label application-textbox-label">Amount of Funds</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="number" id="txtBorrowedAmount" formkey="txtBorrowedAmount" class="text-input form-control">
+                        <div class="invalid-feedback hidden text-danger">Required</div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset id="fsOther" class="asset-detail">
+            <legend>Other Non-Real Estate Assets</legend>
+            <label class="bottom10">Tel us about any assets not already included above</label>
+            <div id="divOther">
+                <div id="divStocksBondsAmount" class="row form-group">
+                    <div class="col-md-3 text-right">
+                        <label class="control-label application-textbox-label">Stocks and Bonds</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="number" id="txtStocksBondsAmount" formkey="txtStocksBondsAmount" class="text-input form-control">
+                        <div class="invalid-feedback hidden text-danger">Required</div>
+                    </div>
+                </div>
+                <div id="divRetirementAccountsAmount" class="row form-group">
+                    <div class="col-md-3 text-right">
+                        <label class="control-label application-textbox-label">Retirement Accounts</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="number" id="txtRetirementAccountsAmount" formkey="txtRetirementAccountsAmount" class="text-input form-control">
+                        <div class="invalid-feedback hidden text-danger">Required</div>
+                    </div>
+                </div>
+                <div id="divOtherNonRealEstateAmount" class="row form-group">
+                    <div class="col-md-3 text-right">
+                        <label class="control-label application-textbox-label">Other</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="number" id="txtOtherNonRealEstateAmount" formkey="txtOtherNonRealEstateAmount" class="text-input form-control">
+                        <div class="invalid-feedback hidden text-danger">Required</div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset id="fsOtherRealEstate" class="asset-detail">
+            <legend>Real Estate</legend>
+            <div id="divOtherRealEstate" class="row form-group">
+                <div class="col-md-3 text-right">
+                    <label class="control-label application-textbox-label">Do you own any real estate? (Excluding rental properties)</label>
+                </div>
+                <div class="col-md-3">
+                    <select id="ddlOtherRealEstate" class="select-input form-control" formkey="ddlOtherRealEstate">
+                        <option value="">Select</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                    <div class="invalid-feedback hidden text-danger">Select one</div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</form>
+
+@Html.Application_Navigation_Buttons(
+    new CustomHelpers.NavigationButton() { EnableValidation = false, PageId = "PersonalInfoPage02" },
+    new CustomHelpers.NavigationButton() { PageId = "ExpensesInfo" }
+)
+

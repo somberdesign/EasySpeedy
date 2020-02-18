@@ -1,0 +1,109 @@
+﻿
+@using EasySpeedyMortgages.Models.ViewModels
+@using EasySpeedyMortgages.Classes
+
+@model IncomeViewModel
+
+@{
+    var timePeriods = new List<SelectListItem>()
+{
+new SelectListItem() { Text="Annually", Value="annualy" },
+new SelectListItem() { Text="Monthly", Value="monthly" },
+new SelectListItem() { Text="Weekly", Value="weekly" },
+new SelectListItem() { Text="Biweekly", Value="biweekly" },
+new SelectListItem() { Text="Bimonthly", Value="bimonthly" }
+};
+}
+
+
+@Html.Application_Text_Box("Income" + Model.ApplicantType.ToString() + "EmployerName", "Employer Name")
+@Html.Application_Text_Box("Income" + Model.ApplicantType.ToString() + "EmployerAddress", "Address")
+@Html.Application_Text_Box("Income" + Model.ApplicantType.ToString() + "EmployerCity", "City")
+<div>State</div>
+@Html.Application_Text_Box("Income" + Model.ApplicantType.ToString() + "EmployerZip", "Zip")
+@Html.Application_Text_Box("Income" + Model.ApplicantType.ToString() + "EmployerPosition", "Position/Title")
+@Html.Application_Text_Box("Income" + Model.ApplicantType.ToString() + "EmployerLength", "")
+<div id="divBorrowerEmployerCity" class="row form-group">
+    <div class="col-md-3 text-right">
+        <label class="control-label application-textbox-label">Employment Length</label>
+    </div>
+    <div class="col-md-9 row">
+        <div class="col-md-1">
+            <input type="text" id="txtIncomeBorrowerEmployerLengthYears" name="txtIncomeBorrowerEmployerLengthYears" class="text-input form-control small-input" formkey="txtIncomeBorrowerEmployerLengthYears">
+            <label for="txtIncomeBorrowerEmployerLengthYears" class="control-label application-textbox-label">Years</label>
+        </div>
+        <div class="invalid-feedback hidden text-danger">Required</div>
+        <div class="col-md-2 col-md-offset-1">
+            <input type="text" id="txtIncomeBorrowerEmployerLengthMonths" name="txtIncomeBorrowerEmployerLengthMonths" class="text-input form-control small-input" formkey="txtIncomeBorrowerEmployerLengthMonths">
+            <label for="txtIncomeBorrowerEmployerLengthMonths" class="control-label application-textbox-label float-left">Months</label>
+        </div>
+        <div class="invalid-feedback hidden text-danger">Required</div>
+    </div>
+</div>
+@Html.Application_Text_Box("Income" + Model.ApplicantType.ToString() + "EmployerYearsInProfession", "Years in Profession")
+@Html.Application_Text_Box("Income" + Model.ApplicantType.ToString() + "EmployerPhone", "Phone")
+<div id="divBorrowerEmployerBaseIncome" class="row form-group">
+    <div class="col-md-3 text-right">
+        <label class="control-label application-textbox-label">Base Income</label>
+    </div>
+    <div class="col-md-9 row">
+        <div class="col-md-2">
+            <input type="text" id="txtIncomeBorrowerEmployerBaseIncome" name="txtIncomeBorrowerEmployerBaseIncome" class="text-input form-control" formkey="txtIncomeBorrowerEmployerBaseIncome">
+        </div>
+        <div class="invalid-feedback hidden text-danger">Required</div>
+        <div class="col-md-2">
+            @Html.DropDownList("ddlIncomeEmployerBaseIncomePeriod", timePeriods, "Time Period", null)
+        </div>
+        <div class="invalid-feedback hidden text-danger">Required</div>
+    </div>
+</div>
+<div id="divBorrowerEmployerOvertime" class="row form-group">
+    <div class="col-md-3 text-right">
+        <label class="control-label application-textbox-label">Base Income</label>
+    </div>
+    <div class="col-md-9 row">
+        <div class="col-md-2">
+            <input type="text" id="txtIncomeBorrowerEmployerOvertime" name="txtIncomeBorrowerEmployerOvertime" class="text-input form-control" formkey="txtIncomeBorrowerEmployerOvertime">
+        </div>
+        <div class="invalid-feedback hidden text-danger">Required</div>
+        <div class="col-md-2">
+            @Html.DropDownList("ddlIncomeEmployerOvertimePeriod", timePeriods, "Time Period", null)
+        </div>
+        <div class="invalid-feedback hidden text-danger">Required</div>
+    </div>
+</div>
+<div id="divBorrowerEmployerBonus" class="row form-group">
+    <div class="col-md-3 text-right">
+        <label class="control-label application-textbox-label">Base Income</label>
+    </div>
+    <div class="col-md-9 row">
+        <div class="col-md-2">
+            <input type="text" id="txtIncomeBorrowerEmployerBonus" name="txtIncomeBorrowerEmployerBonus" class="text-input form-control" formkey="txtIncomeBorrowerEmployerBonus">
+        </div>
+        <div class="invalid-feedback hidden text-danger">Required</div>
+        <div class="col-md-2">
+            @Html.DropDownList("ddlIncomeEmployerBonusPeriod", timePeriods, "Time Period", null)
+        </div>
+        <div class="invalid-feedback hidden text-danger">Required</div>
+    </div>
+</div>
+<div id="divBorrowerEmployerCommission" class="row form-group">
+    <div class="col-md-3 text-right">
+        <label class="control-label application-textbox-label">Base Income</label>
+    </div>
+    <div class="col-md-9 row">
+        <div class="col-md-2">
+            <input type="text" id="txtIncomeBorrowerEmployerCommission" name="txtIncomeBorrowerEmployerCommission" class="text-input form-control" formkey="txtIncomeBorrowerEmployerCommission">
+        </div>
+        <div class="invalid-feedback hidden text-danger">Required</div>
+        <div class="col-md-2">
+            @Html.DropDownList("ddlIncomeEmployerCommissionPeriod", timePeriods, "Time Period", null)
+        </div>
+        <div class="invalid-feedback hidden text-danger">Required</div>
+    </div>
+</div>
+
+
+<div id="divEmployerState"></div>
+
+

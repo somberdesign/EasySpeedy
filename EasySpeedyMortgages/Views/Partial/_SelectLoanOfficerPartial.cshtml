@@ -1,0 +1,39 @@
+﻿@using EasySpeedyMortgages.Classes
+
+<style type="text/css">
+    #btnOfficers {
+        width:100%;
+    }
+    #divOfficerDropdown {
+    width: 260px;
+    background: rgb(238, 238, 238);
+}
+    #divofficerRow {
+        margin-bottom: 15px;
+    }
+    #divOfficers {
+        background: rgb(238, 238, 238);
+        max-height:550px;
+        overflow-x:hidden;
+        overflow-y:scroll;
+        width:100%;
+    }
+</style>
+
+        <div style="float:right; margin-right:45px;">
+            <div id="divOfficerDropdown" class="dropdown">
+                <button id="btnOfficers" class="btn btn-secondary btn-lg" type="button" style="color:#000" data-toggle="dropdown">
+                    Select a Loan Officer
+                </button>
+                <div id="divOfficers" class="dropdown-menu"></div>
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+
+@Scripts.Render("~/Scripts/Views/Partial/SelectLoanOfficerPartial.js")
+
+<script type="text/javascript">
+    $(function () {
+        PopulateLoanOfficers();
+    });
+</script>

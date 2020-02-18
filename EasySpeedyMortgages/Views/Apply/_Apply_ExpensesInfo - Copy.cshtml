@@ -1,0 +1,17 @@
+﻿
+@using EasySpeedyMortgages.Classes
+
+
+<form id="frmExpensesInfo" class="container">
+
+    <fieldset id="fsExpense" class="asset-detail">
+        <legend>Expense Details</legend>
+        <a class="btn btn-link" onclick="CreateExpenseControls();">Add</a>
+
+    </fieldset>
+</form>
+
+    @Html.Application_Navigation_Buttons(
+        new CustomHelpers.NavigationButton() { EnableValidation = false, PageId = "AssetInfo" },
+        new CustomHelpers.NavigationButton() { PageId = "IncomeInfo" }
+    )

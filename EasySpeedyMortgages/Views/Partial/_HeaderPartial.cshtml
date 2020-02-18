@@ -1,0 +1,27 @@
+﻿
+
+<div class="container header">
+    <div id="div_header_partial_logo" style="width:50%; float:left; vertical-align:middle;" class="text-left">
+        <a href="~/">
+            <img src="~/Media/reliableMortgagesLogoMedium.png" id="img-logo" alt="logo" class="logo">
+        </a>
+    </div>
+
+    <div id="div_header_partial_phone" class="callus">
+        <div class="phonenumber">
+            <div class="text-right">
+                <i class="glyphicon glyphicon-earphone"></i> 
+                <a href="tel:(407) 339-9781">(407) 339-9781</a>
+            </div>
+        </div>
+    </div>
+    <div style="clear:both;"></div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var phoneDiv = $('#div_header_partial_phone');
+        //phoneDiv.height($('#div_header_partial_logo').height());
+        phoneDiv.addClass('align-middle');
+    });
+</script>

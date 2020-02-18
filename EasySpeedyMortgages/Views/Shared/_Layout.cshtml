@@ -1,0 +1,52 @@
+﻿@using EasySpeedyMortgages.Classes
+
+@{ 
+    var baseUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"));
+    var hideUserControls = ViewBag.HideUserControls != null && (bool)ViewBag.HideUserControls == true;
+    var officerImageDir = baseUrl + EsmGlobals.OfficerImagesPath;
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Easy Speedy Mortgages</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style type="text/css">
+        @RenderSection("styles", required: false)
+    </style>
+    <script type="text/javascript">
+        var layout_officerImageDir = '@officerImageDir';
+    </script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/moment")
+    @Scripts.Render("~/bundles/easySpeedyMortgage")
+    @RenderSection("head_bottom", required: false)
+</head>
+<body>
+    @if (HttpContext.Current.IsDebuggingEnabled)
+    {
+        <div  style="position:absolute;background-color:khaki;border:2px solid black;padding:0px 25px 0px 25px;">
+            <h3>Development Build Date: 2020-02-01</h3>
+            <h3><a href="@string.Format("{0}/Admin", baseUrl)">Go to Admin Page</a></h3>
+        </div>
+    }
+
+    @if (!hideUserControls)
+    {
+        @Html.Partial("~/Views/Partial/_SelectLoanOfficerPartial.cshtml")
+        <br />
+        @Html.Partial("~/Views/Partial/_TopNav1Partial.cshtml")
+        @Html.Partial("~/Views/Partial/_HeaderPartial.cshtml")
+        @Html.Partial("~/Views/Partial/_BottomNavPartial.cshtml")
+    }
+
+    @RenderBody()       
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

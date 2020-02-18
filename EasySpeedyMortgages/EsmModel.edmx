@@ -1,0 +1,1122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EasySpeedyMortgagesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Addresses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="address1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="address2" Type="varchar" MaxLength="50" />
+          <Property Name="city" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="state" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="zip_code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="number_of_years" Type="int" />
+        </EntityType>
+        <EntityType Name="Applicants">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="50" />
+          <Property Name="last_name" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="phone" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+          <Property Name="salt" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Applications">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="primary_borrower_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Borrowers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="middle_name" Type="varchar" MaxLength="50" />
+          <Property Name="last_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="social_security_number" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="date_of_birth" Type="date" Nullable="false" />
+          <Property Name="home_phone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="work_phone" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="marital_status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="number_years_in_school" Type="int" />
+          <Property Name="number_of_dependents" Type="int" />
+          <Property Name="dependents_ages" Type="varchar" MaxLength="50" />
+          <Property Name="monthly_base_income" Type="int" />
+          <Property Name="monthly_overtime" Type="int" />
+          <Property Name="monthly_bonuses" Type="int" />
+          <Property Name="monthly_commissions" Type="int" />
+          <Property Name="mopnthly_dividends_interest" Type="int" />
+          <Property Name="net_rental_income" Type="int" />
+          <Property Name="other_income" Type="int" />
+        </EntityType>
+        <EntityType Name="Borrowers_Addresses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="borrower_id" Type="int" Nullable="false" />
+          <Property Name="address_id" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EasySpeedyMortgages.dbo.CoBorrowers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CoBorrowers">
+          <Key>
+            <PropertyRef Name="application_id" />
+            <PropertyRef Name="borrower_id" />
+          </Key>
+          <Property Name="application_id" Type="int" Nullable="false" />
+          <Property Name="borrower_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CreditQuality">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="quality_description" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailLog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="x_sender" Type="varchar" MaxLength="500" />
+          <Property Name="x_receiver" Type="varchar" MaxLength="500" />
+          <Property Name="to_address" Type="varchar" MaxLength="500" />
+          <Property Name="from_address" Type="varchar" MaxLength="500" />
+          <Property Name="dt_sent" Type="datetime" />
+          <Property Name="subject" Type="varchar" MaxLength="500" />
+          <Property Name="body" Type="varchar" MaxLength="5000" />
+          <Property Name="sender_ip" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EmploymentItems">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="is_self_employed" Type="bit" />
+          <Property Name="address_id" Type="int" />
+          <Property Name="start_date" Type="datetime" />
+          <Property Name="is_currently_employed_here" Type="bit" />
+          <Property Name="position_title_type" Type="varbinary" MaxLength="50" />
+          <Property Name="years_in_line_of_work" Type="int" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="InitialBorrowerInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="last_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone_number" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="loan_amount" Type="int" Nullable="false" />
+          <Property Name="property_value" Type="int" Nullable="false" />
+          <Property Name="loan_type_id" Type="int" Nullable="false" />
+          <Property Name="credit_quality_id" Type="int" Nullable="false" />
+          <Property Name="referring_officer_id" Type="int" />
+          <Property Name="created_dt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LoanType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="loan_description" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Officers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="officer_name" Type="varchar" MaxLength="50" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
+          <Property Name="image" Type="varchar" MaxLength="50" />
+          <Property Name="sort_order" Type="int" />
+          <Property Name="is_visible" Type="bit" Nullable="false" />
+          <Property Name="biography" Type="varchar" MaxLength="5000" />
+          <Property Name="biography_title" Type="varchar" MaxLength="100" />
+          <Property Name="officer_key" Type="varchar" MaxLength="50" />
+          <Property Name="nmls_number" Type="varchar" MaxLength="50" />
+          <Property Name="email_address" Type="varchar" MaxLength="50" />
+          <Property Name="mailing_address" Type="varchar" MaxLength="50" />
+          <Property Name="primary_phone_number_id" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EasySpeedyMortgages.dbo.Officers_PhoneNumbers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Officers_PhoneNumbers">
+          <Key>
+            <PropertyRef Name="officer_id" />
+            <PropertyRef Name="phone_number_id" />
+            <PropertyRef Name="sort_number" />
+            <PropertyRef Name="is_visible" />
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="officer_id" Type="int" Nullable="false" />
+          <Property Name="phone_number_id" Type="int" Nullable="false" />
+          <Property Name="sort_number" Type="int" Nullable="false" />
+          <Property Name="is_visible" Type="bit" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PhoneNumbers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="phone_number" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Settings">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="settingName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
+          <Property Name="datatype" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="value" Type="varchar" MaxLength="5000" />
+        </EntityType>
+        <EntityType Name="ShortApplication">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="additional_cash" Type="varchar" MaxLength="100" />
+          <Property Name="household_income" Type="varchar" MaxLength="100" />
+          <Property Name="bankruptcy" Type="varchar" MaxLength="100" />
+          <Property Name="contact_time" Type="varchar" MaxLength="100" />
+          <Property Name="credit_history" Type="varchar" MaxLength="100" />
+          <Property Name="email_address" Type="varchar" MaxLength="100" />
+          <Property Name="employment_status" Type="varchar" MaxLength="100" />
+          <Property Name="fha_loan" Type="varchar" MaxLength="100" />
+          <Property Name="first_name" Type="varchar" MaxLength="100" />
+          <Property Name="foreclosure" Type="varchar" MaxLength="100" />
+          <Property Name="phone" Type="varchar" MaxLength="100" />
+          <Property Name="last_name" Type="varchar" MaxLength="100" />
+          <Property Name="late_payments" Type="varchar" MaxLength="100" />
+          <Property Name="lead_date" Type="varchar" MaxLength="100" />
+          <Property Name="lead_type" Type="varchar" MaxLength="100" />
+          <Property Name="loan_type" Type="varchar" MaxLength="100" />
+          <Property Name="loan_purpose" Type="varchar" MaxLength="100" />
+          <Property Name="military_service" Type="varchar" MaxLength="100" />
+          <Property Name="monthly_payments" Type="varchar" MaxLength="100" />
+          <Property Name="mortgage_balance_one" Type="varchar" MaxLength="100" />
+          <Property Name="mortgage_balance_two" Type="varchar" MaxLength="100" />
+          <Property Name="mortgage_rate_one" Type="varchar" MaxLength="100" />
+          <Property Name="mortgage_rate_two" Type="varchar" MaxLength="100" />
+          <Property Name="property_type" Type="varchar" MaxLength="100" />
+          <Property Name="property_address" Type="varchar" MaxLength="100" />
+          <Property Name="property_city" Type="varchar" MaxLength="100" />
+          <Property Name="property_use" Type="varchar" MaxLength="100" />
+          <Property Name="property_state" Type="varchar" MaxLength="100" />
+          <Property Name="property_value" Type="varchar" MaxLength="100" />
+          <Property Name="property_zip" Type="varchar" MaxLength="100" />
+          <Property Name="show_mtg2_loan_type" Type="varchar" MaxLength="100" />
+          <Property Name="site_owner_id" Type="varchar" MaxLength="100" />
+          <Property Name="alt_phone" Type="varchar" MaxLength="100" />
+          <Property Name="purchase_year" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="WizardQuestions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="question" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="response_datatype" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EasySpeedyMortgages.dbo.v_initial_borrower_info' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_initial_borrower_info">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="first_name" />
+            <PropertyRef Name="last_name" />
+            <PropertyRef Name="email" />
+            <PropertyRef Name="phone_number" />
+            <PropertyRef Name="loan_amount" />
+            <PropertyRef Name="property_value" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="last_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone_number" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="loan_amount" Type="int" Nullable="false" />
+          <Property Name="property_value" Type="int" Nullable="false" />
+          <Property Name="loan_description" Type="varchar" MaxLength="50" />
+          <Property Name="quality_description" Type="varchar" MaxLength="50" />
+          <Property Name="officer_name" Type="varchar" MaxLength="50" />
+          <Property Name="created_dt_display" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <Association Name="FK_Applications_Borrowers">
+          <End Role="Borrowers" Type="Self.Borrowers" Multiplicity="0..1" />
+          <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Borrowers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Applications">
+              <PropertyRef Name="primary_borrower_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Borrowers_Addresses_Addresses">
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="1" />
+          <End Role="Borrowers_Addresses" Type="Self.Borrowers_Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Borrowers_Addresses">
+              <PropertyRef Name="address_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Borrowers_Addresses_Borrowers">
+          <End Role="Borrowers" Type="Self.Borrowers" Multiplicity="1" />
+          <End Role="Borrowers_Addresses" Type="Self.Borrowers_Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Borrowers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Borrowers_Addresses">
+              <PropertyRef Name="borrower_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CoBorrowers_Applications">
+          <End Role="Applications" Type="Self.Applications" Multiplicity="1" />
+          <End Role="CoBorrowers" Type="Self.CoBorrowers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CoBorrowers">
+              <PropertyRef Name="application_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CoBorrowers_Borrowers">
+          <End Role="Borrowers" Type="Self.Borrowers" Multiplicity="1" />
+          <End Role="CoBorrowers" Type="Self.CoBorrowers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Borrowers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CoBorrowers">
+              <PropertyRef Name="borrower_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Officers_PhoneNumbers_Officers">
+          <End Role="Officers" Type="Self.Officers" Multiplicity="1" />
+          <End Role="Officers_PhoneNumbers" Type="Self.Officers_PhoneNumbers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Officers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Officers_PhoneNumbers">
+              <PropertyRef Name="officer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Officers_PhoneNumbers_PhoneNumbers">
+          <End Role="PhoneNumbers" Type="Self.PhoneNumbers" Multiplicity="1" />
+          <End Role="Officers_PhoneNumbers" Type="Self.Officers_PhoneNumbers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhoneNumbers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Officers_PhoneNumbers">
+              <PropertyRef Name="phone_number_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="AddPhoneNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OfficerKey" Type="varchar" Mode="In" />
+          <Parameter Name="PhoneNumber" Type="varchar" Mode="In" />
+          <Parameter Name="Description" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetOfficer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OfficerKey" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="EasySpeedyMortgagesModelStoreContainer">
+          <EntitySet Name="Addresses" EntityType="Self.Addresses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Applicants" EntityType="Self.Applicants" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Applications" EntityType="Self.Applications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Borrowers" EntityType="Self.Borrowers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Borrowers_Addresses" EntityType="Self.Borrowers_Addresses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CreditQuality" EntityType="Self.CreditQuality" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailLog" EntityType="Self.EmailLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmploymentItems" EntityType="Self.EmploymentItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InitialBorrowerInfo" EntityType="Self.InitialBorrowerInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoanType" EntityType="Self.LoanType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Officers" EntityType="Self.Officers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhoneNumbers" EntityType="Self.PhoneNumbers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShortApplication" EntityType="Self.ShortApplication" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WizardQuestions" EntityType="Self.WizardQuestions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CoBorrowers" EntityType="Self.CoBorrowers" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CoBorrowers].[application_id] AS [application_id], 
+    [CoBorrowers].[borrower_id] AS [borrower_id]
+    FROM [dbo].[CoBorrowers] AS [CoBorrowers]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Officers_PhoneNumbers" EntityType="Self.Officers_PhoneNumbers" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Officers_PhoneNumbers].[officer_id] AS [officer_id], 
+    [Officers_PhoneNumbers].[phone_number_id] AS [phone_number_id], 
+    [Officers_PhoneNumbers].[sort_number] AS [sort_number], 
+    [Officers_PhoneNumbers].[is_visible] AS [is_visible], 
+    [Officers_PhoneNumbers].[id] AS [id]
+    FROM [dbo].[Officers_PhoneNumbers] AS [Officers_PhoneNumbers]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_initial_borrower_info" EntityType="Self.v_initial_borrower_info" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_initial_borrower_info].[id] AS [id], 
+    [v_initial_borrower_info].[first_name] AS [first_name], 
+    [v_initial_borrower_info].[last_name] AS [last_name], 
+    [v_initial_borrower_info].[email] AS [email], 
+    [v_initial_borrower_info].[phone_number] AS [phone_number], 
+    [v_initial_borrower_info].[loan_amount] AS [loan_amount], 
+    [v_initial_borrower_info].[property_value] AS [property_value], 
+    [v_initial_borrower_info].[loan_description] AS [loan_description], 
+    [v_initial_borrower_info].[quality_description] AS [quality_description], 
+    [v_initial_borrower_info].[officer_name] AS [officer_name], 
+    [v_initial_borrower_info].[created_dt_display] AS [created_dt_display]
+    FROM [dbo].[v_initial_borrower_info] AS [v_initial_borrower_info]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Applications_Borrowers" Association="Self.FK_Applications_Borrowers">
+            <End Role="Borrowers" EntitySet="Borrowers" />
+            <End Role="Applications" EntitySet="Applications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Borrowers_Addresses_Addresses" Association="Self.FK_Borrowers_Addresses_Addresses">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Borrowers_Addresses" EntitySet="Borrowers_Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Borrowers_Addresses_Borrowers" Association="Self.FK_Borrowers_Addresses_Borrowers">
+            <End Role="Borrowers" EntitySet="Borrowers" />
+            <End Role="Borrowers_Addresses" EntitySet="Borrowers_Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CoBorrowers_Applications" Association="Self.FK_CoBorrowers_Applications">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="CoBorrowers" EntitySet="CoBorrowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CoBorrowers_Borrowers" Association="Self.FK_CoBorrowers_Borrowers">
+            <End Role="Borrowers" EntitySet="Borrowers" />
+            <End Role="CoBorrowers" EntitySet="CoBorrowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Officers_PhoneNumbers_Officers" Association="Self.FK_Officers_PhoneNumbers_Officers">
+            <End Role="Officers" EntitySet="Officers" />
+            <End Role="Officers_PhoneNumbers" EntitySet="Officers_PhoneNumbers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Officers_PhoneNumbers_PhoneNumbers" Association="Self.FK_Officers_PhoneNumbers_PhoneNumbers">
+            <End Role="PhoneNumbers" EntitySet="PhoneNumbers" />
+            <End Role="Officers_PhoneNumbers" EntitySet="Officers_PhoneNumbers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EasySpeedyMortgagesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="address1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="state" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="zip_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="number_of_years" Type="Int32" />
+          <NavigationProperty Name="Borrowers_Addresses" Relationship="Self.FK_Borrowers_Addresses_Addresses" FromRole="Addresses" ToRole="Borrowers_Addresses" />
+        </EntityType>
+        <EntityType Name="Applicant">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="salt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="primary_borrower_id" Type="Int32" />
+          <NavigationProperty Name="Borrower" Relationship="Self.FK_Applications_Borrowers" FromRole="Applications" ToRole="Borrowers" />
+          <NavigationProperty Name="Borrowers" Relationship="Self.CoBorrowers" FromRole="Applications" ToRole="Borrowers" />
+        </EntityType>
+        <EntityType Name="Borrower">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="middle_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="social_security_number" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="date_of_birth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="home_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="work_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="marital_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="number_years_in_school" Type="Int32" />
+          <Property Name="number_of_dependents" Type="Int32" />
+          <Property Name="dependents_ages" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="monthly_base_income" Type="Int32" />
+          <Property Name="monthly_overtime" Type="Int32" />
+          <Property Name="monthly_bonuses" Type="Int32" />
+          <Property Name="monthly_commissions" Type="Int32" />
+          <Property Name="mopnthly_dividends_interest" Type="Int32" />
+          <Property Name="net_rental_income" Type="Int32" />
+          <Property Name="other_income" Type="Int32" />
+          <NavigationProperty Name="Applications" Relationship="Self.FK_Applications_Borrowers" FromRole="Borrowers" ToRole="Applications" />
+          <NavigationProperty Name="Borrowers_Addresses" Relationship="Self.FK_Borrowers_Addresses_Borrowers" FromRole="Borrowers" ToRole="Borrowers_Addresses" />
+          <NavigationProperty Name="Applications1" Relationship="Self.CoBorrowers" FromRole="Borrowers" ToRole="Applications" />
+        </EntityType>
+        <EntityType Name="Borrowers_Addresses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="borrower_id" Type="Int32" Nullable="false" />
+          <Property Name="address_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Address" Relationship="Self.FK_Borrowers_Addresses_Addresses" FromRole="Borrowers_Addresses" ToRole="Addresses" />
+          <NavigationProperty Name="Borrower" Relationship="Self.FK_Borrowers_Addresses_Borrowers" FromRole="Borrowers_Addresses" ToRole="Borrowers" />
+        </EntityType>
+        <EntityType Name="EmploymentItem">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="is_self_employed" Type="Boolean" />
+          <Property Name="address_id" Type="Int32" />
+          <Property Name="start_date" Type="DateTime" Precision="3" />
+          <Property Name="is_currently_employed_here" Type="Boolean" />
+          <Property Name="position_title_type" Type="Binary" MaxLength="50" FixedLength="false" />
+          <Property Name="years_in_line_of_work" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="WizardQuestion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="question" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="response_datatype" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Borrowers_Addresses_Addresses">
+          <End Role="Addresses" Type="Self.Address" Multiplicity="1" />
+          <End Role="Borrowers_Addresses" Type="Self.Borrowers_Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Borrowers_Addresses">
+              <PropertyRef Name="address_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Applications_Borrowers">
+          <End Role="Borrowers" Type="Self.Borrower" Multiplicity="0..1" />
+          <End Role="Applications" Type="Self.Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Borrowers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Applications">
+              <PropertyRef Name="primary_borrower_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Borrowers_Addresses_Borrowers">
+          <End Role="Borrowers" Type="Self.Borrower" Multiplicity="1" />
+          <End Role="Borrowers_Addresses" Type="Self.Borrowers_Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Borrowers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Borrowers_Addresses">
+              <PropertyRef Name="borrower_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CoBorrowers">
+          <End Role="Applications" Type="Self.Application" Multiplicity="*" />
+          <End Role="Borrowers" Type="Self.Borrower" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="EasySpeedyMortgagesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Addresses" EntityType="Self.Address" />
+          <EntitySet Name="Applicants" EntityType="Self.Applicant" />
+          <EntitySet Name="Applications" EntityType="Self.Application" />
+          <EntitySet Name="Borrowers" EntityType="Self.Borrower" />
+          <EntitySet Name="Borrowers_Addresses" EntityType="Self.Borrowers_Addresses" />
+          <EntitySet Name="EmploymentItems" EntityType="Self.EmploymentItem" />
+          <EntitySet Name="WizardQuestions" EntityType="Self.WizardQuestion" />
+          <AssociationSet Name="FK_Borrowers_Addresses_Addresses" Association="Self.FK_Borrowers_Addresses_Addresses">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Borrowers_Addresses" EntitySet="Borrowers_Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Applications_Borrowers" Association="Self.FK_Applications_Borrowers">
+            <End Role="Borrowers" EntitySet="Borrowers" />
+            <End Role="Applications" EntitySet="Applications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Borrowers_Addresses_Borrowers" Association="Self.FK_Borrowers_Addresses_Borrowers">
+            <End Role="Borrowers" EntitySet="Borrowers" />
+            <End Role="Borrowers_Addresses" EntitySet="Borrowers_Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="CoBorrowers" Association="Self.CoBorrowers">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="Borrowers" EntitySet="Borrowers" />
+          </AssociationSet>
+          <EntitySet Name="Settings" EntityType="EasySpeedyMortgagesModel.Setting" />
+          <EntitySet Name="PhoneNumbers" EntityType="EasySpeedyMortgagesModel.PhoneNumber" />
+          <FunctionImport Name="AddPhoneNumber">
+            <Parameter Name="OfficerKey" Mode="In" Type="String" />
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Officers" EntityType="EasySpeedyMortgagesModel.Officer" />
+          <EntitySet Name="Officers_PhoneNumbers" EntityType="EasySpeedyMortgagesModel.Officers_PhoneNumbers" />
+          <AssociationSet Name="FK_Officers_PhoneNumbers_Officers" Association="EasySpeedyMortgagesModel.FK_Officers_PhoneNumbers_Officers">
+            <End Role="Officer" EntitySet="Officers" />
+            <End Role="Officers_PhoneNumbers" EntitySet="Officers_PhoneNumbers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Officers_PhoneNumbers_PhoneNumbers" Association="EasySpeedyMortgagesModel.FK_Officers_PhoneNumbers_PhoneNumbers">
+            <End Role="PhoneNumber" EntitySet="PhoneNumbers" />
+            <End Role="Officers_PhoneNumbers" EntitySet="Officers_PhoneNumbers" />
+          </AssociationSet>
+          <EntitySet Name="CreditQualities" EntityType="EasySpeedyMortgagesModel.CreditQuality" />
+          <EntitySet Name="InitialBorrowerInfoes" EntityType="EasySpeedyMortgagesModel.InitialBorrowerInfo" />
+          <EntitySet Name="LoanTypes" EntityType="EasySpeedyMortgagesModel.LoanType" />
+          <FunctionImport Name="GetOfficer" ReturnType="Collection(EasySpeedyMortgagesModel.GetOfficer_Result)">
+          <Parameter Name="OfficerKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="EmailLogs" EntityType="EasySpeedyMortgagesModel.EmailLog" />
+          <EntitySet Name="ShortApplications" EntityType="EasySpeedyMortgagesModel.ShortApplication" />
+          <EntitySet Name="v_initial_borrower_info" EntityType="EasySpeedyMortgagesModel.v_initial_borrower_info" />
+        </EntityContainer>
+        <EntityType Name="Setting">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="settingName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="datatype" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="value" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PhoneNumber">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="phone_number" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Officers_PhoneNumbers" Relationship="EasySpeedyMortgagesModel.FK_Officers_PhoneNumbers_PhoneNumbers" FromRole="PhoneNumber" ToRole="Officers_PhoneNumbers" />
+        </EntityType>
+        <EntityType Name="Officer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="officer_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sort_order" Type="Int32" />
+          <Property Name="is_visible" Type="Boolean" Nullable="false" />
+          <Property Name="biography" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="biography_title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="officer_key" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nmls_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mailing_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="primary_phone_number_id" Type="Int32" />
+          <NavigationProperty Name="Officers_PhoneNumbers" Relationship="EasySpeedyMortgagesModel.FK_Officers_PhoneNumbers_Officers" FromRole="Officer" ToRole="Officers_PhoneNumbers" />
+        </EntityType>
+        <EntityType Name="Officers_PhoneNumbers">
+          <Key>
+            <PropertyRef Name="officer_id" />
+            <PropertyRef Name="phone_number_id" />
+            <PropertyRef Name="sort_number" />
+            <PropertyRef Name="is_visible" />
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="officer_id" Type="Int32" Nullable="false" />
+          <Property Name="phone_number_id" Type="Int32" Nullable="false" />
+          <Property Name="sort_number" Type="Int32" Nullable="false" />
+          <Property Name="is_visible" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Officer" Relationship="EasySpeedyMortgagesModel.FK_Officers_PhoneNumbers_Officers" FromRole="Officers_PhoneNumbers" ToRole="Officer" />
+          <NavigationProperty Name="PhoneNumber" Relationship="EasySpeedyMortgagesModel.FK_Officers_PhoneNumbers_PhoneNumbers" FromRole="Officers_PhoneNumbers" ToRole="PhoneNumber" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <Association Name="FK_Officers_PhoneNumbers_Officers">
+          <End Type="EasySpeedyMortgagesModel.Officer" Role="Officer" Multiplicity="1" />
+          <End Type="EasySpeedyMortgagesModel.Officers_PhoneNumbers" Role="Officers_PhoneNumbers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Officer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Officers_PhoneNumbers">
+              <PropertyRef Name="officer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Officers_PhoneNumbers_PhoneNumbers">
+          <End Type="EasySpeedyMortgagesModel.PhoneNumber" Role="PhoneNumber" Multiplicity="1" />
+          <End Type="EasySpeedyMortgagesModel.Officers_PhoneNumbers" Role="Officers_PhoneNumbers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhoneNumber">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Officers_PhoneNumbers">
+              <PropertyRef Name="phone_number_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CreditQuality">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="quality_description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="InitialBorrowerInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="last_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="phone_number" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="loan_amount" Type="Int32" Nullable="false" />
+          <Property Name="property_value" Type="Int32" Nullable="false" />
+          <Property Name="loan_type_id" Type="Int32" Nullable="false" />
+          <Property Name="credit_quality_id" Type="Int32" Nullable="false" />
+          <Property Name="referring_officer_id" Type="Int32" />
+          <Property Name="created_dt" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="LoanType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="loan_description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="GetOfficer_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="officer_name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="description" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="image" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="sort_order" Nullable="true" />
+          <Property Type="Boolean" Name="is_visible" Nullable="false" />
+          <Property Type="String" Name="biography" Nullable="true" MaxLength="5000" />
+          <Property Type="String" Name="biography_title" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="officer_key" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="nmls_number" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="email_address" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="mailing_address" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="primary_phone_number" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="EmailLog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="x_sender" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="x_receiver" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="to_address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="from_address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="dt_sent" Type="DateTime" Precision="3" />
+          <Property Name="subject" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="body" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="sender_ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ShortApplication">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="additional_cash" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="household_income" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="bankruptcy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="contact_time" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="credit_history" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="email_address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="employment_status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fha_loan" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="first_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="foreclosure" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="last_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="late_payments" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="lead_date" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="lead_type" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="loan_type" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="loan_purpose" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="military_service" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="monthly_payments" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="mortgage_balance_one" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="mortgage_balance_two" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="mortgage_rate_one" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="mortgage_rate_two" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="property_type" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="property_address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="property_city" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="property_use" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="property_state" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="property_value" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="property_zip" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="show_mtg2_loan_type" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="site_owner_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="alt_phone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="purchase_year" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="v_initial_borrower_info">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="first_name" />
+            <PropertyRef Name="last_name" />
+            <PropertyRef Name="email" />
+            <PropertyRef Name="phone_number" />
+            <PropertyRef Name="loan_amount" />
+            <PropertyRef Name="property_value" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="first_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="last_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="phone_number" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="loan_amount" Type="Int32" Nullable="false" />
+          <Property Name="property_value" Type="Int32" Nullable="false" />
+          <Property Name="loan_description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="quality_description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="officer_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="created_dt_display" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EasySpeedyMortgagesModelStoreContainer" CdmEntityContainer="EasySpeedyMortgagesEntities">
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="EasySpeedyMortgagesModel.Address">
+              <MappingFragment StoreEntitySet="Addresses">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="address1" ColumnName="address1" />
+                <ScalarProperty Name="address2" ColumnName="address2" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="zip_code" ColumnName="zip_code" />
+                <ScalarProperty Name="number_of_years" ColumnName="number_of_years" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Applicants">
+            <EntityTypeMapping TypeName="EasySpeedyMortgagesModel.Applicant">
+              <MappingFragment StoreEntitySet="Applicants">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="salt" ColumnName="salt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Applications">
+            <EntityTypeMapping TypeName="EasySpeedyMortgagesModel.Application">
+              <MappingFragment StoreEntitySet="Applications">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="primary_borrower_id" ColumnName="primary_borrower_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Borrowers">
+            <EntityTypeMapping TypeName="EasySpeedyMortgagesModel.Borrower">
+              <MappingFragment StoreEntitySet="Borrowers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="social_security_number" ColumnName="social_security_number" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="home_phone" ColumnName="home_phone" />
+                <ScalarProperty Name="work_phone" ColumnName="work_phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="marital_status" ColumnName="marital_status" />
+                <ScalarProperty Name="number_years_in_school" ColumnName="number_years_in_school" />
+                <ScalarProperty Name="number_of_dependents" ColumnName="number_of_dependents" />
+                <ScalarProperty Name="dependents_ages" ColumnName="dependents_ages" />
+                <ScalarProperty Name="monthly_base_income" ColumnName="monthly_base_income" />
+                <ScalarProperty Name="monthly_overtime" ColumnName="monthly_overtime" />
+                <ScalarProperty Name="monthly_bonuses" ColumnName="monthly_bonuses" />
+                <ScalarProperty Name="monthly_commissions" ColumnName="monthly_commissions" />
+                <ScalarProperty Name="mopnthly_dividends_interest" ColumnName="mopnthly_dividends_interest" />
+                <ScalarProperty Name="net_rental_income" ColumnName="net_rental_income" />
+                <ScalarProperty Name="other_income" ColumnName="other_income" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Borrowers_Addresses">
+            <EntityTypeMapping TypeName="EasySpeedyMortgagesModel.Borrowers_Addresses">
+              <MappingFragment StoreEntitySet="Borrowers_Addresses">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="borrower_id" ColumnName="borrower_id" />
+                <ScalarProperty Name="address_id" ColumnName="address_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmploymentItems">
+            <EntityTypeMapping TypeName="EasySpeedyMortgagesModel.EmploymentItem">
+              <MappingFragment StoreEntitySet="EmploymentItems">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="is_self_employed" ColumnName="is_self_employed" />
+                <ScalarProperty Name="address_id" ColumnName="address_id" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="is_currently_employed_here" ColumnName="is_currently_employed_here" />
+                <ScalarProperty Name="position_title_type" ColumnName="position_title_type" />
+                <ScalarProperty Name="years_in_line_of_work" ColumnName="years_in_line_of_work" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WizardQuestions">
+            <EntityTypeMapping TypeName="EasySpeedyMortgagesModel.WizardQuestion">
+              <MappingFragment StoreEntitySet="WizardQuestions">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="response_datatype" ColumnName="response_datatype" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="CoBorrowers" TypeName="EasySpeedyMortgagesModel.CoBorrowers" StoreEntitySet="CoBorrowers">
+            <EndProperty Name="Applications">
+              <ScalarProperty Name="id" ColumnName="application_id" />
+            </EndProperty>
+            <EndProperty Name="Borrowers">
+              <ScalarProperty Name="id" ColumnName="borrower_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Settings">
+            <EntityTypeMapping TypeName="EasySpeedyMortgagesModel.Setting">
+              <MappingFragment StoreEntitySet="Settings">
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="datatype" ColumnName="datatype" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="settingName" ColumnName="settingName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhoneNumbers">
+            <EntityTypeMapping TypeName="EasySpeedyMortgagesModel.PhoneNumber">
+              <MappingFragment StoreEntitySet="PhoneNumbers">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddPhoneNumber" FunctionName="EasySpeedyMortgagesModel.Store.AddPhoneNumber" />
+          <EntitySetMapping Name="Officers">
+            <EntityTypeMapping TypeName="EasySpeedyMortgagesModel.Officer">
+              <MappingFragment StoreEntitySet="Officers">
+                <ScalarProperty Name="primary_phone_number_id" ColumnName="primary_phone_number_id" />
+                <ScalarProperty Name="mailing_address" ColumnName="mailing_address" />
+                <ScalarProperty Name="email_address" ColumnName="email_address" />
+                <ScalarProperty Name="nmls_number" ColumnName="nmls_number" />
+                <ScalarProperty Name="officer_key" ColumnName="officer_key" />
+                <ScalarProperty Name="biography_title" ColumnName="biography_title" />
+                <ScalarProperty Name="biography" ColumnName="biography" />
+                <ScalarProperty Name="is_visible" ColumnName="is_visible" />
+                <ScalarProperty Name="sort_order" ColumnName="sort_order" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="officer_name" ColumnName="officer_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Officers_PhoneNumbers">
+            <EntityTypeMapping TypeName="EasySpeedyMortgagesModel.Officers_PhoneNumbers">
+              <MappingFragment StoreEntitySet="Officers_PhoneNumbers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="is_visible" ColumnName="is_visible" />
+                <ScalarProperty Name="sort_number" ColumnName="sort_number" />
+                <ScalarProperty Name="phone_number_id" ColumnName="phone_number_id" />
+                <ScalarProperty Name="officer_id" ColumnName="officer_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CreditQualities">
+            <EntityTypeMapping TypeName="EasySpeedyMortgagesModel.CreditQuality">
+              <MappingFragment StoreEntitySet="CreditQuality">
+                <ScalarProperty Name="quality_description" ColumnName="quality_description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InitialBorrowerInfoes">
+            <EntityTypeMapping TypeName="EasySpeedyMortgagesModel.InitialBorrowerInfo">
+              <MappingFragment StoreEntitySet="InitialBorrowerInfo">
+                <ScalarProperty Name="created_dt" ColumnName="created_dt" />
+                <ScalarProperty Name="referring_officer_id" ColumnName="referring_officer_id" />
+                <ScalarProperty Name="credit_quality_id" ColumnName="credit_quality_id" />
+                <ScalarProperty Name="loan_type_id" ColumnName="loan_type_id" />
+                <ScalarProperty Name="property_value" ColumnName="property_value" />
+                <ScalarProperty Name="loan_amount" ColumnName="loan_amount" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoanTypes">
+            <EntityTypeMapping TypeName="EasySpeedyMortgagesModel.LoanType">
+              <MappingFragment StoreEntitySet="LoanType">
+                <ScalarProperty Name="loan_description" ColumnName="loan_description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetOfficer" FunctionName="EasySpeedyMortgagesModel.Store.GetOfficer">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EasySpeedyMortgagesModel.GetOfficer_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="officer_name" ColumnName="officer_name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="sort_order" ColumnName="sort_order" />
+                <ScalarProperty Name="is_visible" ColumnName="is_visible" />
+                <ScalarProperty Name="biography" ColumnName="biography" />
+                <ScalarProperty Name="biography_title" ColumnName="biography_title" />
+                <ScalarProperty Name="officer_key" ColumnName="officer_key" />
+                <ScalarProperty Name="nmls_number" ColumnName="nmls_number" />
+                <ScalarProperty Name="email_address" ColumnName="email_address" />
+                <ScalarProperty Name="mailing_address" ColumnName="mailing_address" />
+                <ScalarProperty Name="primary_phone_number" ColumnName="primary_phone_number" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="EmailLogs">
+            <EntityTypeMapping TypeName="EasySpeedyMortgagesModel.EmailLog">
+              <MappingFragment StoreEntitySet="EmailLog">
+                <ScalarProperty Name="sender_ip" ColumnName="sender_ip" />
+                <ScalarProperty Name="body" ColumnName="body" />
+                <ScalarProperty Name="subject" ColumnName="subject" />
+                <ScalarProperty Name="dt_sent" ColumnName="dt_sent" />
+                <ScalarProperty Name="from_address" ColumnName="from_address" />
+                <ScalarProperty Name="to_address" ColumnName="to_address" />
+                <ScalarProperty Name="x_receiver" ColumnName="x_receiver" />
+                <ScalarProperty Name="x_sender" ColumnName="x_sender" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShortApplications">
+            <EntityTypeMapping TypeName="EasySpeedyMortgagesModel.ShortApplication">
+              <MappingFragment StoreEntitySet="ShortApplication">
+                <ScalarProperty Name="purchase_year" ColumnName="purchase_year" />
+                <ScalarProperty Name="alt_phone" ColumnName="alt_phone" />
+                <ScalarProperty Name="site_owner_id" ColumnName="site_owner_id" />
+                <ScalarProperty Name="show_mtg2_loan_type" ColumnName="show_mtg2_loan_type" />
+                <ScalarProperty Name="property_zip" ColumnName="property_zip" />
+                <ScalarProperty Name="property_value" ColumnName="property_value" />
+                <ScalarProperty Name="property_state" ColumnName="property_state" />
+                <ScalarProperty Name="property_use" ColumnName="property_use" />
+                <ScalarProperty Name="property_city" ColumnName="property_city" />
+                <ScalarProperty Name="property_address" ColumnName="property_address" />
+                <ScalarProperty Name="property_type" ColumnName="property_type" />
+                <ScalarProperty Name="mortgage_rate_two" ColumnName="mortgage_rate_two" />
+                <ScalarProperty Name="mortgage_rate_one" ColumnName="mortgage_rate_one" />
+                <ScalarProperty Name="mortgage_balance_two" ColumnName="mortgage_balance_two" />
+                <ScalarProperty Name="mortgage_balance_one" ColumnName="mortgage_balance_one" />
+                <ScalarProperty Name="monthly_payments" ColumnName="monthly_payments" />
+                <ScalarProperty Name="military_service" ColumnName="military_service" />
+                <ScalarProperty Name="loan_purpose" ColumnName="loan_purpose" />
+                <ScalarProperty Name="loan_type" ColumnName="loan_type" />
+                <ScalarProperty Name="lead_type" ColumnName="lead_type" />
+                <ScalarProperty Name="lead_date" ColumnName="lead_date" />
+                <ScalarProperty Name="late_payments" ColumnName="late_payments" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="foreclosure" ColumnName="foreclosure" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="fha_loan" ColumnName="fha_loan" />
+                <ScalarProperty Name="employment_status" ColumnName="employment_status" />
+                <ScalarProperty Name="email_address" ColumnName="email_address" />
+                <ScalarProperty Name="credit_history" ColumnName="credit_history" />
+                <ScalarProperty Name="contact_time" ColumnName="contact_time" />
+                <ScalarProperty Name="bankruptcy" ColumnName="bankruptcy" />
+                <ScalarProperty Name="household_income" ColumnName="household_income" />
+                <ScalarProperty Name="additional_cash" ColumnName="additional_cash" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_initial_borrower_info">
+            <EntityTypeMapping TypeName="EasySpeedyMortgagesModel.v_initial_borrower_info">
+              <MappingFragment StoreEntitySet="v_initial_borrower_info">
+                <ScalarProperty Name="created_dt_display" ColumnName="created_dt_display" />
+                <ScalarProperty Name="officer_name" ColumnName="officer_name" />
+                <ScalarProperty Name="quality_description" ColumnName="quality_description" />
+                <ScalarProperty Name="loan_description" ColumnName="loan_description" />
+                <ScalarProperty Name="property_value" ColumnName="property_value" />
+                <ScalarProperty Name="loan_amount" ColumnName="loan_amount" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

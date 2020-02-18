@@ -1,0 +1,49 @@
+﻿body {
+}
+
+select {
+    width: 260px;
+    margin: 0 auto;
+    height: 34px;
+    margin-bottom: 14px;
+    color: #000;
+    font-size: 15px;
+}
+
+.appbox {
+    background: url(../Media/HomePurchaseWizard/boxbackground.png) no-repeat 50% 50%;
+    padding: 7px;
+    width: 226px;
+    height: 216px;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.appbox-active {
+    border: 3px solid red;
+}
+
+.appicon {
+    position: relative;
+    display: block;
+    text-align: center;
+    height: 150px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    padding-top: 25px;
+}
+
+
+.txt {
+    font-size: 19px !important;
+    text-align: center;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    height: 55px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    line-height: 51px;
+}

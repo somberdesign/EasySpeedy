@@ -1,0 +1,61 @@
+﻿@using EasySpeedyMortgages.Models.ViewModels.Partial
+@using System.Text.RegularExpressions
+
+@model EasySpeedyMortgages.Models.ViewModels.DisplayOfficerViewModel
+
+@{
+    ViewBag.Title = "DisplayOfficer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var officer = Model.loanOfficer; 
+    var imageAddress = Url.Content("~/Media/OfficerImages/" + officer.image);
+}
+
+@section Scripts {
+    <script src="~/Scripts/Views/Partial/InitialBorrowerInfo.js"></script>
+}
+
+@section Styles {
+    .do-space-under { padding-bottom:15px; }
+    }
+
+<div style="margin-top:25px;" class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="lo-info">
+                <img src="@imageAddress" width="121" />
+                <h1 style="font-size:150%;">@officer.officer_name</h1>
+                <p class='lo-p-overwrite'>
+                    <div class="do-space-under">NMLS# @officer.nmls_number</div>
+
+@foreach (var p in Model.loanOfficer.Phones)
+{
+    <div class="do-space-under">
+        @if (!string.IsNullOrEmpty(@p.description))
+        {
+            @:<span class="do-phone-description">@p.description:</span>&nbsp;&nbsp;
+        }
+        <span class="do-phone">@p.phone_number</span>
+    </div>
+}
+
+                    <div class="do-space-under"><a href="mailto:@officer.email_address">Email Me</a></div>
+                    <div>@officer.mailing_address</div>
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="lhp-edit">
+                <p>
+                    <strong>@officer.biography_title</strong>
+                    <br />
+                    <br />
+                    <p>@Html.Raw(Regex.Replace(officer.biography, @"\r\n?|\n", "</p><p>"))</p>
+            </p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            @Html.Partial("~/Views/Partial/_InitialBorrowerInfo.cshtml", new InitialBorrowerInfoViewModel(Model.loanOfficer.id))
+        </div>
+    </div>
+</div>
+

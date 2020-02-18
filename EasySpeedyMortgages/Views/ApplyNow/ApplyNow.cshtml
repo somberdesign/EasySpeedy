@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "HomePurchaseWizard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section head_bottom {
+    @Scripts.Render("~/Scripts/jquery.steps.js")
+    @Styles.Render("~/Content/jquery.steps.css")
+    @Styles.Render("~/Content/ApplyNow.css")
+}
+
+
+<div id="divApplyNow" style="padding-top:50px;">
+    <h3>Borrower</h3>
+    <section>
+        <div>Borrower Info / Address / Employment / Income</div>
+        <div id="divApplyBorrower">
+            <h3>Borrower Info</h3>
+            <section>
+                <div class="hpw-select-div">
+                    <input id="borrower-address-1" type="text" placeholder="Address 1" class="text-input" formkey="borrower-address-1">
+                </div><div class="hpw-select-div">
+                    <input id="borrower-address-2" type="text" placeholder="Address 2" class="text-input" formkey="borrower-address-2">
+                </div><div class="hpw-select-div">
+                    <input id="borrower-city" type="text" placeholder="City $2" class="text-input" formkey="borrower-city">
+                </div><div class="hpw-select-div">
+                    <input id="borrower-state" type="text" placeholder="State $2" class="text-input" formkey="borrower-state">
+                </div><div class="hpw-select-div">
+                    <input id="borrower-zip" type="text" placeholder="Zip $2" class="text-input" formkey="borrower-zip">
+                </div><div class="hpw-select-div">
+                    <input id="borrower-rent-own" type="text" placeholder="Rent own" class="text-input" formkey="borrower-rent-own">
+                </div><div class="hpw-select-div">
+                    <input id="borrower-number-of-years" type="text" placeholder="Number of" class="text-input" formkey="borrower-number-of-years">
+                </div><div class="hpw-select-div">
+                    <input id="borrower-less-than-2-years" type="text" placeholder="Less than" class="text-input" formkey="borrower-less-than-2-years">
+                </div>
+            </section>
+            <h3>Address</h3>
+            <section>
+                Address
+            </section>
+            <h3>Employment</h3>
+            <section>
+                Employment
+            </section>
+            <h3>Income</h3>
+            <section>
+                Income
+            </section>
+
+        </div>
+    </section>
+
+    <h3>Co-Borrower</h3>
+    <section>
+            <input id="cbCoBorrower" type="checkbox" checked />
+        <label for="cbCoBorrower">This loan does not have a Co-Borrower</label>
+
+        <div id="divCoBorrowerWizard" style="display:none;">Co-Borrower Info / Address / Employment / Income</div>
+    </section>
+
+    <h3>Property</h3>
+    <section>
+        Load Info / Purpose / Address
+    </section>
+
+    <h3>Financial</h3>
+    <section>
+        <div>Liquid Assets / Combined Housing Expense / Autos / Real Estate Owned / Other Assets</div>
+    </section>
+
+    <h3>Disclosures</h3>
+    <section>
+        Borrower / Co-Borrower / Demographic
+    </section>
+
+    <h3>Finish</h3>
+    <section>
+        Finish
+    </section>
+
+</div>
+
+@Scripts.Render("~/Scripts/Views/ApplyNow.js")

@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Admin</h2>
+
+@section head_bottom {
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>    
+        <script type="text/javascript" src="~/Scripts/Views/Admin.js"></script>
+    }
+
+<button id="btnShortApplications" type="button" class="btn btn-info">Short Application Data</button>
+<button id="btnInitialBorrowerInfo" type="button" class="btn btn-info">Initial Borrower Info Data</button>
+<hr />
+<div id="divShortApplications" style="display:none;" class="admin-div">
+    <div>This data comes from the Home Purchase wizard</div>
+    <table id="tblShortApplications" class="display">
+        <thead>
+            <tr>
+                <th>id</th><th>additional_cash</th><th>household_income</th><th>bankruptcy</th><th>contact_time</th><th>credit_history</th><th>email_address</th><th>employment_status</th><th>fha_loan</th><th>first_name</th><th>foreclosure</th><th>phone</th><th>last_name</th><th>late_payments</th><th>lead_date</th><th>lead_type</th><th>loan_type</th><th>loan_purpose</th><th>military_service</th><th>monthly_payments</th><th>mortgage_balance_one</th><th>mortgage_balance_two</th><th>mortgage_rate_one</th><th>mortgage_rate_two</th><th>property_type</th><th>property_address</th><th>property_city</th><th>property_use</th><th>property_state</th><th>property_value</th><th>property_zip</th><th>show_mtg2_loan_type</th><th>site_owner_id</th><th>alt_phone</th><th>purchase_year</th>
+            </tr>
+        </thead>
+    </table>
+
+</div>
+
+<div id="divInitialBorrowerInfo" style="display:none;" class="admin-div">
+    <div>This data comes from the <i>Get a Quote</i> form</div>
+    <table id="tblInitialBorrowerInfo" class="display">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>first_name</th>
+                <th>last_name</th>
+                <th>email</th>
+                <th>phone_number</th>
+                <th>loan_amount</th>
+                <th>property_value</th>
+                <th>loan_type</th>
+                <th>credit_quality</th>
+                <th>officer_name</th>
+                <th>created_dt</th>
+            </tr>
+        </thead>
+    </table>
+
+</div>

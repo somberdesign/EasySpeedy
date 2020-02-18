@@ -1,0 +1,72 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.callus {
+    color: #333;
+    display: block;
+    font-size: 26px;
+    padding: 0;
+    margin: 40px 0;
+    line-height: 26px;
+}}
+.clear-both { clear:both; }
+.float-left { float:left;}
+.float-right { float:right;}
+.logo { max-height: 150px; }
+.officer-option-description {
+    color: #aaa;
+    display: block;
+    overflow: hidden;
+    font-weight: normal;
+    line-height: 1.4em;
+}
+.officer-option-item {
+    background-color: #fff;
+    border-bottom: solid 1px #ddd;
+    color: #333;
+    cursor: pointer;
+    display: block;
+    overflow: hidden;
+    padding: 10px;
+    text-decoration: none;
+    -webkit-transition: all 0.25s ease-in-out;
+    
+}
+.officer-option-image { 
+    margin-right:5px;
+    max-height: 85px; 
+    width: 75px; 
+    vertical-align:middle;
+}
+.officer-option-name {
+    font-size:16px;
+    padding-bottom:15px;
+}
+.topnav {
+    background: #7B1FA2;
+}
+.topnav a {
+    color: #fff;
+}

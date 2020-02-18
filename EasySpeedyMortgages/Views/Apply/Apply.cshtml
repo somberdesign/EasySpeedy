@@ -1,0 +1,94 @@
+﻿@using EasySpeedyMortgages.Classes;
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@section Scripts {
+    <script src="~/Scripts/Apply/Apply.js"></script>
+}
+
+<style type="text/css">
+    div.application-hr {
+        border-bottom:solid groove @EsmGlobals.HtmlColor_Hr;
+    }
+    .bottom10 {
+        padding-bottom: 10px;
+    }
+    fieldset.asset-detail {
+        margin-top: 25px;
+    }
+    .application-textbox-label {
+        padding-top: 6px;
+        }
+
+    .top25 {
+        padding-top: 25px;
+    }
+    div.has-controls {
+    }
+    input.small-input {
+        width: 40px;
+    }
+ </style>
+<div>
+    <h5>AdditionFi Login</h5>
+    <ul style="list-style-image:none;">
+        <li>hfiver@watership.com</li>
+        <li>dob: 02/25/1975</li>
+    </ul>
+</div>
+
+<ul class="nav nav-tabs" id="applyTabs" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link" id="aStartApp" data-toggle="tab" href="#divStartApp" role="tab" aria-controls="home" aria-selected="true" onclick="FillFormFields('frmStartAppPage01');">Start App</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="aPersonalInfo" data-toggle="tab" href="#divPersonalInfo" role="tab" aria-controls="home" aria-selected="false">Personal Info</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="aPropertyInfo" data-toggle="tab" href="#divPropertyInfo" role="tab" aria-controls="home" aria-selected="false">Property Info</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="aLoanSelection" data-toggle="tab" href="#divLoanSelection" role="tab" aria-controls="home" aria-selected="false">Loan Selection</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="aAssetInfo" data-toggle="tab" href="#divAssetInfo" role="tab" aria-controls="home" aria-selected="false">Asset Info</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="aExpensesInfo" data-toggle="tab" href="#divExpensesInfo" role="tab" aria-controls="home" aria-selected="false">Expenses Info</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="aIncomeInfo" data-toggle="tab" href="#divIncomeInfo" role="tab" aria-controls="home" aria-selected="false">Income Info</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="aSubmitApp" data-toggle="tab" href="#divSubmitApp" role="tab" aria-controls="home" aria-selected="false">Submit App</a>
+    </li>
+</ul>
+
+
+<div class="tab-content" id="divApplyContent">
+    <div class="tab-pane fade active top25" id="divStartApp" role="tabpanel" aria-labelledby="aStartApp">
+        @{ Html.RenderPartial("~\\Views\\Apply\\_Apply_StartApp.cshtml"); }
+    </div>
+    <div class="tab-pane fade" id="divPersonalInfo" role="tabpanel" aria-labelledby="aPersonalInfo">
+        @{ Html.RenderPartial("~\\Views\\Apply\\_Apply_PersonalInfo.cshtml"); }
+    </div>
+    <div class="tab-pane fade" id="divPropertyInfo" role="tabpanel" aria-labelledby="aPropertyInfo">
+        @{ Html.RenderPartial("~\\Views\\Apply\\_Apply_PropertyInfo.cshtml"); }
+    </div>
+    <div class="tab-pane fade" id="divAssetInfo" role="tabpanel" aria-labelledby="aAssetInfo">
+        @{ Html.RenderPartial("~\\Views\\Apply\\_Apply_AssetInfo.cshtml"); }
+    </div>
+    <div class="tab-pane fade" id="divExpensesInfo" role="tabpanel" aria-labelledby="aExpensesInfo">
+        @{ Html.RenderPartial("~\\Views\\Apply\\_Apply_ExpensesInfo.cshtml"); }
+    </div>
+    <div class="tab-pane fade" id="divIncomeInfo" role="tabpanel" aria-labelledby="aIncomeInfo">
+        @{ Html.RenderPartial("~\\Views\\Apply\\_Apply_IncomeInfo.cshtml"); }
+    </div>
+    <div class="tab-pane fade" id="divSubmitApp" role="tabpanel" aria-labelledby="aSubmitApp">
+        @{ Html.RenderPartial("~\\Views\\Apply\\_Apply_Submit_App.cshtml"); }
+    </div>
+</div>
+
+

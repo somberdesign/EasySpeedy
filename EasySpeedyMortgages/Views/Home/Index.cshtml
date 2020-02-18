@@ -1,0 +1,80 @@
+﻿@using EasySpeedyMortgages.Models.ViewModels.Partial
+@using EasySpeedyMortgages.Classes
+
+@{
+    ViewBag.Title = "Home Page";
+    //Development.SnakeToCamel();
+}
+
+@section Scripts {
+    <script src="~/Scripts/Views/Partial/InitialBorrowerInfo.js"></script>
+    }
+
+@section Styles {
+    .divForm {
+        z-index: 100;
+    }
+    }
+
+<div id="frontend-app" class="homepage-using-form-builder">
+    <div id="divForm" class="container form-container">
+        <div class="row">
+            <div class="col-lg-offset-8 col-lg-4 col-md-offset-7 col-md-5 col-sm-offset-5 col-sm-7 col-xs-12">
+                @Html.Partial("~/Views/Partial/_InitialBorrowerInfo.cshtml", new InitialBorrowerInfoViewModel())
+            </div>
+        </div>
+    </div>
+
+    <section class="bannerarea hidden">
+        <div class="sliderXX">
+            <div class="flexslider" style="width: 100%; margin: 0px auto;" role="region" aria-label="Carousel">
+                <ul class="slides">
+                    <li style="width: 100%; float: left; margin-right: -100%; display: none;">
+                        <img src="https://cdn.lenderhomepage.com/themes/responsivetemplate14/images/slide1.jpg" alt=" The PERFECT HOME is waiting for you. ">
+
+                        <div class="container flex-caption-layout">
+                            <div class="flex-caption-container">
+                                <div class="flex-caption"><h2>The PERFECT HOME is waiting for you.</h2></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li style="width: 100%; float: left; margin-right: -100%; display: list-item;">
+                        <img src="https://cdn.lenderhomepage.com/themes/responsivetemplate14/images/slide2.jpg" alt=" We're with you every step of the way. ">
+
+                        <div class="container flex-caption-layout">
+                            <div class="flex-caption-container">
+                                <div class="flex-caption"><h2>We're with you every step of the way.</h2></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li style="width: 100%; float: left; margin-right: -100%; display: none;">
+                        <img src="https://cdn.lenderhomepage.com/themes/responsivetemplate14/images/slide3.jpg" alt=" Purchase or Refinancing is easy with our help. ">
+
+                        <div class="container flex-caption-layout">
+                            <div class="flex-caption-container">
+                                <div class="flex-caption"><h2>Purchase or Refinancing is easy with our help.</h2></div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ol class="flex-control-nav"><li><a class="">1</a></li><li><a class="active">2</a></li><li><a class="">3</a></li></ol>
+            </div>
+            <script type="text/javascript" src="https://cdn.lenderhomepage.com/js/flexslider/jquery.flexslider-min.js"></script>
+            <script type="text/javascript">
+    if(typeof window.flexSliderSpeed == 'undefined') {
+         window.flexSliderSpeed = 7000;
+    }
+$(function() {
+	$('.flexslider').flexslider({
+		controlNav: true,
+		directionNav: false,
+		animation: 'fade',
+        slideshowSpeed: 7000	});
+});
+            </script>
+
+        </div>
+    </section>
+
+
+</div>
