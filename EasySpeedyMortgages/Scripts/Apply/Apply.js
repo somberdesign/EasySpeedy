@@ -190,7 +190,12 @@ function Go(pageId) {
             window.scrollTo(0, 0);
             FillFormFields('frmIncomeInfo');
             break;
-    }
+		case 'SubmitApp':
+			$('#aSubmitApp').tab('show');
+			window.scrollTo(0, 0);
+			FillFormFields('frmSubmitApp');
+			break;
+		}
     // $('#aPersonalInfo').tab('show');
     // $('#aPropertyInfo').tab('show');
     // $('#aLoanSelection').tab('show');
@@ -874,36 +879,40 @@ function CreateIncomeSelfEmploymentControls(applicantType, counterValue) {
     }
     
     var borrowerType = applicantType.charAt(0).toUpperCase() + applicantType.toLowerCase().slice(1);
-    var n = 'divIncomeSelfEmployment' + borrowerType + 'Controls' + counterValue;
-    console.log(`n = ${n}`);
-    var topDiv = $('<div />', { id: n}).appendTo($('#fs' + borrowerType + 'Income'));
+    var topDivName = 'divIncomeSelfEmployment' + borrowerType + 'Controls' + counterValue;
+    var topDiv = $('<div />', { id: topDivName}).appendTo($('#fs' + borrowerType + 'Income'));
     
     var divName = $('<div />', { id: GetId('div', 'BusinessName'), class: 'row form-group' }).appendTo(topDiv);
     var divNameLabel = $('<div />', { class: 'col-md-3 text-right' }).appendTo(divName);
     $('<label />', { class: 'control-label application-textbox-label', text: 'Business Name' }).appendTo(divNameLabel);
-    var divNameInput = $('<div />', { class: 'col-md-9' }).appendTo(divName);
-    $('<input />', { type: 'text', id: GetId('txt', 'BusinessName'), name: GetId('txt', 'BusinessName'), class: 'text-input form-control', formkey: GetId('txt', 'Name')}).appendTo(divNameInput);
-    $('<div />', { class: 'invalid-feedback hidden text-danger' }).text('Required').appendTo(divNameInput);
+    var divNameInput = $('<div />', { class: 'col-md-7' }).appendTo(divName);
+    $('<input />', { type: 'text', id: GetId('txt', 'BusinessName'), name: GetId('txt', 'BusinessName'), class: 'text-input form-control income-required-control', formkey: GetId('txt', 'Name')}).appendTo(divNameInput);
+	$('<div />', { class: 'invalid-feedback hidden text-danger' }).text('Required').appendTo(divNameInput);
+	$('<div />', { class: 'col-md-2' }).appendTo(divName)
+		.addClass('btn btn-link text-left')
+		.text('delete')
+		.click(function () { $('#' + topDivName).remove(); });
+
 
     var divPhone = $('<div />', { id: GetId('div', 'Phone'), class: 'row form-group' }).appendTo(topDiv);
     var divPhoneLabel = $('<div />', { class: 'col-md-3 text-right' }).appendTo(divPhone);
     $('<label />', { class: 'control-label application-textbox-label', text: 'Phone' }).appendTo(divPhoneLabel);
     var divPhoneInput = $('<div />', { class: 'col-md-9' }).appendTo(divPhone);
-    $('<input />', { type: 'text', id: GetId('txt', 'Phone'), name: GetId('txt', 'Phone'), class: 'text-input form-control', formkey: GetId('txt', 'Phone')}).appendTo(divPhoneInput);
+    $('<input />', { type: 'text', id: GetId('txt', 'Phone'), name: GetId('txt', 'Phone'), class: 'text-input form-control income-required-control', formkey: GetId('txt', 'Phone')}).appendTo(divPhoneInput);
     $('<div />', { class: 'invalid-feedback hidden text-danger' }).text('Required').appendTo(divPhoneInput);
 
     var divAddress = $('<div />', { id: GetId('div', 'Address'), class: 'row form-group' }).appendTo(topDiv);
     var divAddressLabel = $('<div />', { class: 'col-md-3 text-right' }).appendTo(divAddress);
     $('<label />', { class: 'control-label application-textbox-label', text: 'Address' }).appendTo(divAddressLabel);
     var divAddressInput = $('<div />', { class: 'col-md-9' }).appendTo(divAddress);
-    $('<input />', { type: 'text', id: GetId('txt', 'Address'), name: GetId('txt', 'Address'), class: 'text-input form-control', formkey: GetId('txt', 'Address')}).appendTo(divAddressInput);
+    $('<input />', { type: 'text', id: GetId('txt', 'Address'), name: GetId('txt', 'Address'), class: 'text-input form-control income-required-control', formkey: GetId('txt', 'Address')}).appendTo(divAddressInput);
     $('<div />', { class: 'invalid-feedback hidden text-danger' }).text('Required').appendTo(divAddressInput);
 
     var divCity = $('<div />', { id: GetId('div', 'City'), class: 'row form-group' }).appendTo(topDiv);
     var divCityLabel = $('<div />', { class: 'col-md-3 text-right' }).appendTo(divCity);
     $('<label />', { class: 'control-label application-textbox-label', text: 'City' }).appendTo(divCityLabel);
     var divCityInput = $('<div />', { class: 'col-md-9' }).appendTo(divCity);
-    $('<input />', { type: 'text', id: GetId('txt', 'City'), name: GetId('txt', 'City'), class: 'text-input form-control', formkey: GetId('txt', 'City')}).appendTo(divCityInput);
+    $('<input />', { type: 'text', id: GetId('txt', 'City'), name: GetId('txt', 'City'), class: 'text-input form-control income-required-control', formkey: GetId('txt', 'City')}).appendTo(divCityInput);
     $('<div />', { class: 'invalid-feedback hidden text-danger' }).text('Required').appendTo(divCityInput);
 
     var divState = $('<div />', { id: GetId('div', 'State'), class: 'row form-group' }).appendTo(topDiv);
@@ -917,14 +926,14 @@ function CreateIncomeSelfEmploymentControls(applicantType, counterValue) {
     var divZipLabel = $('<div />', { class: 'col-md-3 text-right' }).appendTo(divZip);
     $('<label />', { class: 'control-label application-textbox-label', text: 'Zip' }).appendTo(divZipLabel);
     var divZipInput = $('<div />', { class: 'col-md-9' }).appendTo(divZip);
-    $('<input />', { type: 'text', id: GetId('txt', 'Zip'), name: GetId('txt', 'Zip'), class: 'text-input form-control', formkey: GetId('txt', 'Zip')}).appendTo(divZipInput);
+    $('<input />', { type: 'text', id: GetId('txt', 'Zip'), name: GetId('txt', 'Zip'), class: 'text-input form-control income-required-control', formkey: GetId('txt', 'Zip')}).appendTo(divZipInput);
     $('<div />', { class: 'invalid-feedback hidden text-danger' }).text('Required').appendTo(divZipInput);
 
     var divPosition = $('<div />', { id: GetId('div', 'Position'), class: 'row form-group' }).appendTo(topDiv);
     var divPositionLabel = $('<div />', { class: 'col-md-3 text-right' }).appendTo(divPosition);
     $('<label />', { class: 'control-label application-textbox-label', text: 'Position/Title' }).appendTo(divPositionLabel);
     var divPositionInput = $('<div />', { class: 'col-md-9' }).appendTo(divPosition);
-    $('<input />', { type: 'text', id: GetId('txt', 'Position'), name: GetId('txt', 'Position'), class: 'text-input form-control', formkey: GetId('txt', 'Position')}).appendTo(divPositionInput);
+    $('<input />', { type: 'text', id: GetId('txt', 'Position'), name: GetId('txt', 'Position'), class: 'text-input form-control income-required-control', formkey: GetId('txt', 'Position')}).appendTo(divPositionInput);
     $('<div />', { class: 'invalid-feedback hidden text-danger' }).text('Required').appendTo(divPositionInput);
 
     var divLength = $('<div />', { id: GetId('div', 'Length'), class: 'row form-group' }).appendTo(topDiv);
@@ -933,12 +942,12 @@ function CreateIncomeSelfEmploymentControls(applicantType, counterValue) {
     
     var divLengthRight = $('<div />', { class: 'col-md-9' }).appendTo(divLength);
     var divLengthYearsInput = $('<div />', { class: 'col-md-1' }).appendTo(divLengthRight);
-    $('<input />', { type: 'number', id: GetId('txt', 'YearsLength'), name: GetId('txt', 'YearsLength'), class: 'text-input form-control small-input', formkey: GetId('txt', 'YearsLength')}).appendTo(divLengthYearsInput);
+    $('<input />', { type: 'number', id: GetId('txt', 'YearsLength'), name: GetId('txt', 'YearsLength'), class: 'text-input form-control small-input income-required-control text-input-integer', formkey: GetId('txt', 'YearsLength')}).appendTo(divLengthYearsInput);
     $('<label />', { class: 'control-label application-textbox-label', text: 'Years' }).appendTo(divLengthYearsInput);
     $('<div />', { class: 'invalid-feedback hidden text-danger' }).text('Required').appendTo(divLengthYearsInput);
    
     var divLengthMonthsInput = $('<div />', { class: 'col-md-1 col-md-offset-1' }).appendTo(divLengthRight);
-    $('<input />', { type: 'number', id: GetId('txt', 'MonthsLength'), name: GetId('txt', 'MonthsLength'), class: 'text-input form-control small-input', formkey: GetId('txt', 'MonthsLength')}).appendTo(divLengthMonthsInput);
+    $('<input />', { type: 'number', id: GetId('txt', 'MonthsLength'), name: GetId('txt', 'MonthsLength'), class: 'text-input form-control small-input income-required-control text-input-integer', formkey: GetId('txt', 'MonthsLength')}).appendTo(divLengthMonthsInput);
     $('<label />', { class: 'control-label application-textbox-label', text: 'Months' }).appendTo(divLengthMonthsInput);
     $('<div />', { class: 'invalid-feedback hidden text-danger' }).text('Required').appendTo(divLengthMonthsInput);
 
@@ -947,7 +956,7 @@ function CreateIncomeSelfEmploymentControls(applicantType, counterValue) {
     var divYearsInPositionLabel = $('<div />', { class: 'col-md-3 text-right' }).appendTo(divYearsInPosition);
     $('<label />', { class: 'control-label application-textbox-label', text: 'Years in Profession' }).appendTo(divYearsInPositionLabel);
     var divYearsInPositionInput = $('<div />', { class: 'col-md-9' }).appendTo(divYearsInPosition);
-    $('<input />', { type: 'number', id: GetId('txt', 'YearsInPosition'), name: GetId('txt', 'YearsInPosition'), class: 'text-input form-control small-input', formkey: GetId('txt', 'YearsInPosition')}).appendTo(divYearsInPositionInput);
+    $('<input />', { type: 'number', id: GetId('txt', 'YearsInPosition'), name: GetId('txt', 'YearsInPosition'), class: 'text-input form-control small-input income-required-control text-input-integer', formkey: GetId('txt', 'YearsInPosition')}).appendTo(divYearsInPositionInput);
     $('<div />', { class: 'invalid-feedback hidden text-danger' }).text('Required').appendTo(divYearsInPositionInput);
 
     
@@ -1284,7 +1293,8 @@ function ValidateIncomeInfo() {
         if (typeof formValues[controlId] === 'undefined' || formValues[controlId].length === 0) {
             isValid = false;
             $('#' + controlId).closest('div').addClass('has-error'); $('#' + controlId).siblings('.invalid-feedback').removeClass('hidden');
-        }
+		}
+		if ($('#' + controlId).hasClass('text-input-integer'))
     });
 
     $('.income-amount-control').each (function(i, obj) {
