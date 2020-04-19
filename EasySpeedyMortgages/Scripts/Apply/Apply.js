@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-const defaultStartPage = 'IncomeInfo'
+const defaultStartPage = 'SubmitApp'
 
 var formValues = {};
 var dynamicControlCounter = 0;
@@ -191,7 +191,7 @@ function Go(pageId) {
             FillFormFields('frmIncomeInfo');
             break;
 		case 'SubmitApp':
-			$('#aSubmitApp').tab('show');
+		    $('#aSubmitApp').tab('show');
 			window.scrollTo(0, 0);
 			FillFormFields('frmSubmitApp');
 			break;
@@ -786,7 +786,7 @@ function CreateIncomeMilitaryControls(applicantType, counterValue) {
     $('<label />', { class: 'control-label application-textbox-label', text: 'Flight Pay' }).appendTo(divFlightPayLeft);
     var divFlightPayRight = $('<div />', { class: 'col-md-9 text-right' }).appendTo(divFlightPay);
     var divFlightPayValue = $('<div />', { class: 'col-md-2 text-right' }).appendTo(divFlightPayRight);
-    $('<input />', { type: 'number', id: GetId('txt', 'FlightPay'), name: GetId('txt', 'FlightPay'), class: 'text-input form-control', formkey: GetId('txt', 'FlightPay')}).appendTo(divFlightPayValue);
+    $('<input />', { type: 'number', id: GetId('txt', 'FlightPay'), name: GetId('txt', 'FlightPay'), class: 'text-input form-control income-military-amount-control', formkey: GetId('txt', 'FlightPay') }).appendTo(divFlightPayValue);
     $('<div />', { class: 'invalid-feedback hidden text-danger' }).text('Required').appendTo(divFlightPayRight);
     var divFlightPayPeriod = $('<div />', { class: 'col-md-3 text-right' }).appendTo(divFlightPayRight);
     CreateTimePeriodDropdown(GetId('ddl', 'FlightPay')).appendTo(divFlightPayPeriod);
@@ -797,7 +797,7 @@ function CreateIncomeMilitaryControls(applicantType, counterValue) {
     $('<label />', { class: 'control-label application-textbox-label', text: 'Hazard Pay' }).appendTo(divHazardPayLeft);
     var divHazardPayRight = $('<div />', { class: 'col-md-9 text-right' }).appendTo(divHazardPay);
     var divHazardPayValue = $('<div />', { class: 'col-md-2 text-right' }).appendTo(divHazardPayRight);
-    $('<input />', { type: 'number', id: GetId('txt', 'HazardPay'), name: GetId('txt', 'HazardPay'), class: 'text-input form-control', formkey: GetId('txt', 'HazardPay')}).appendTo(divHazardPayValue);
+    $('<input />', { type: 'number', id: GetId('txt', 'HazardPay'), name: GetId('txt', 'HazardPay'), class: 'text-input form-control income-military-amount-control', formkey: GetId('txt', 'HazardPay') }).appendTo(divHazardPayValue);
     $('<div />', { class: 'invalid-feedback hidden text-danger' }).text('Required').appendTo(divHazardPayRight);
     var divHazardPayPeriod = $('<div />', { class: 'col-md-3 text-right' }).appendTo(divHazardPayRight);
     CreateTimePeriodDropdown(GetId('ddl', 'HazardPay')).appendTo(divHazardPayPeriod);
@@ -808,7 +808,7 @@ function CreateIncomeMilitaryControls(applicantType, counterValue) {
     $('<label />', { class: 'control-label application-textbox-label', text: 'Clothing Allowance' }).appendTo(divClothingAllowanceLeft);
     var divClothingAllowanceRight = $('<div />', { class: 'col-md-9 text-right' }).appendTo(divClothingAllowance);
     var divClothingAllowanceValue = $('<div />', { class: 'col-md-2 text-right' }).appendTo(divClothingAllowanceRight);
-    $('<input />', { type: 'number', id: GetId('txt', 'ClothingAllowance'), name: GetId('txt', 'ClothingAllowance'), class: 'text-input form-control', formkey: GetId('txt', 'ClothingAllowance')}).appendTo(divClothingAllowanceValue);
+    $('<input />', { type: 'number', id: GetId('txt', 'ClothingAllowance'), name: GetId('txt', 'ClothingAllowance'), class: 'text-input form-control income-military-amount-control', formkey: GetId('txt', 'ClothingAllowance') }).appendTo(divClothingAllowanceValue);
     $('<div />', { class: 'invalid-feedback hidden text-danger' }).text('Required').appendTo(divClothingAllowanceRight);
     var divClothingAllowancePeriod = $('<div />', { class: 'col-md-3 text-right' }).appendTo(divClothingAllowanceRight);
     CreateTimePeriodDropdown(GetId('ddl', 'ClothingAllowance')).appendTo(divClothingAllowancePeriod);
@@ -819,7 +819,7 @@ function CreateIncomeMilitaryControls(applicantType, counterValue) {
     $('<label />', { class: 'control-label application-textbox-label', text: 'Flight Pay' }).appendTo(divPropPayLeft);
     var divPropPayRight = $('<div />', { class: 'col-md-9 text-right' }).appendTo(divPropPay);
     var divPropPayValue = $('<div />', { class: 'col-md-2 text-right' }).appendTo(divPropPayRight);
-    $('<input />', { type: 'number', id: GetId('txt', 'PropPay'), name: GetId('txt', 'PropPay'), class: 'text-input form-control', formkey: GetId('txt', 'PropPay')}).appendTo(divPropPayValue);
+    $('<input />', { type: 'number', id: GetId('txt', 'PropPay'), name: GetId('txt', 'PropPay'), class: 'text-input form-control income-military-amount-control', formkey: GetId('txt', 'PropPay') }).appendTo(divPropPayValue);
     $('<div />', { class: 'invalid-feedback hidden text-danger' }).text('Required').appendTo(divPropPayRight);
     var divPropPayPeriod = $('<div />', { class: 'col-md-3 text-right' }).appendTo(divPropPayRight);
     CreateTimePeriodDropdown(GetId('ddl', 'PropPay')).appendTo(divPropPayPeriod);
@@ -830,7 +830,7 @@ function CreateIncomeMilitaryControls(applicantType, counterValue) {
     $('<label />', { class: 'control-label application-textbox-label', text: 'Hazard Pay' }).appendTo(divOverseasPayLeft);
     var divOverseasPayRight = $('<div />', { class: 'col-md-9 text-right' }).appendTo(divOverseasPay);
     var divOverseasPayValue = $('<div />', { class: 'col-md-2 text-right' }).appendTo(divOverseasPayRight);
-    $('<input />', { type: 'number', id: GetId('txt', 'OverseasPay'), name: GetId('txt', 'OverseasPay'), class: 'text-input form-control', formkey: GetId('txt', 'OverseasPay')}).appendTo(divOverseasPayValue);
+    $('<input />', { type: 'number', id: GetId('txt', 'OverseasPay'), name: GetId('txt', 'OverseasPay'), class: 'text-input form-control income-military-amount-control', formkey: GetId('txt', 'OverseasPay') }).appendTo(divOverseasPayValue);
     $('<div />', { class: 'invalid-feedback hidden text-danger' }).text('Required').appendTo(divOverseasPayRight);
     var divOverseasPayPeriod = $('<div />', { class: 'col-md-3 text-right' }).appendTo(divOverseasPayRight);
     CreateTimePeriodDropdown(GetId('ddl', 'OverseasPay')).appendTo(divOverseasPayPeriod);
@@ -841,7 +841,7 @@ function CreateIncomeMilitaryControls(applicantType, counterValue) {
     $('<label />', { class: 'control-label application-textbox-label', text: 'Combat Pay' }).appendTo(divCombatPayLeft);
     var divCombatPayRight = $('<div />', { class: 'col-md-9 text-right' }).appendTo(divCombatPay);
     var divCombatPayValue = $('<div />', { class: 'col-md-2 text-right' }).appendTo(divCombatPayRight);
-    $('<input />', { type: 'number', id: GetId('txt', 'CombatPay'), name: GetId('txt', 'CombatPay'), class: 'text-input form-control', formkey: GetId('txt', 'CombatPay')}).appendTo(divCombatPayValue);
+    $('<input />', { type: 'number', id: GetId('txt', 'CombatPay'), name: GetId('txt', 'CombatPay'), class: 'text-input form-control income-military-amount-control', formkey: GetId('txt', 'CombatPay') }).appendTo(divCombatPayValue);
     $('<div />', { class: 'invalid-feedback hidden text-danger' }).text('Required').appendTo(divCombatPayRight);
     var divCombatPayPeriod = $('<div />', { class: 'col-md-3 text-right' }).appendTo(divCombatPayRight);
     CreateTimePeriodDropdown(GetId('ddl', 'CombatPay')).appendTo(divCombatPayPeriod);
@@ -852,7 +852,7 @@ function CreateIncomeMilitaryControls(applicantType, counterValue) {
     $('<label />', { class: 'control-label application-textbox-label', text: 'Housing Allowance (BAH)' }).appendTo(divHousingAllowanceLeft);
     var divHousingAllowanceRight = $('<div />', { class: 'col-md-9 text-right' }).appendTo(divHousingAllowance);
     var divHousingAllowanceValue = $('<div />', { class: 'col-md-2 text-right' }).appendTo(divHousingAllowanceRight);
-    $('<input />', { type: 'number', id: GetId('txt', 'HousingAllowance'), name: GetId('txt', 'HousingAllowance'), class: 'text-input form-control', formkey: GetId('txt', 'HousingAllowance')}).appendTo(divHousingAllowanceValue);
+    $('<input />', { type: 'number', id: GetId('txt', 'HousingAllowance'), name: GetId('txt', 'HousingAllowance'), class: 'text-input form-control income-military-amount-control', formkey: GetId('txt', 'HousingAllowance') }).appendTo(divHousingAllowanceValue);
     $('<div />', { class: 'invalid-feedback hidden text-danger' }).text('Required').appendTo(divHousingAllowanceRight);
     var divHousingAllowancePeriod = $('<div />', { class: 'col-md-3 text-right' }).appendTo(divHousingAllowanceRight);
     CreateTimePeriodDropdown(GetId('ddl', 'HousingAllowance')).appendTo(divHousingAllowancePeriod);
