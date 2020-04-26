@@ -722,6 +722,7 @@
     <Content Include="Views\Apply\_Apply_ExpensesInfo - Copy.cshtml" />
     <Content Include="Views\Apply\_Income_Employment.cshtml" />
     <Content Include="Views\Apply\_Apply_Submit_App.cshtml" />
+    <Content Include="Views\Apply\_Apply_ReviewApp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

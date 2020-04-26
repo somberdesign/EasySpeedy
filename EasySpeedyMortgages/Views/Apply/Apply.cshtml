@@ -62,7 +62,10 @@
         <a class="nav-link" id="aIncomeInfo" data-toggle="tab" href="#divIncomeInfo" role="tab" aria-controls="home" aria-selected="false">Income Info</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="aSubmitApp" data-toggle="tab" href="#divSubmitApp" role="tab" aria-controls="home" aria-selected="false">Submit App</a>
+        <a class="nav-link" id="aSubmitApp" data-toggle="tab" href="#divSubmitApp" role="tab" aria-controls="home" aria-selected="false">Background</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="aReviewApp" data-toggle="tab" href="#divReviewApp" role="tab" aria-controls="home" aria-selected="false">Review App</a>
     </li>
 </ul>
 
@@ -88,6 +91,9 @@
     </div>
     <div class="tab-pane fade" id="divSubmitApp" role="tabpanel" aria-labelledby="aSubmitApp">
         @{ Html.RenderPartial("~\\Views\\Apply\\_Apply_Submit_App.cshtml"); }
+    </div>
+    <div class="tab-pane fade" id="divReviewApp" role="tabpanel" aria-labelledby="aReviewApp">
+        @{ Html.RenderPartial("~\\Views\\Apply\\_Apply_ReviewApp.cshtml"); }
     </div>
 </div>
 

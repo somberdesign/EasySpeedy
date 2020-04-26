@@ -10,7 +10,7 @@
 
 <script type="text/javascript">
     $(function () {
-        
+               
  
     });
 </script>
@@ -21,7 +21,7 @@
 
 <div class="row">
     <div class="col-md-1 col-md-offset-7 text-center">Applicant</div>
-    <div class="col-md-1 text-center col-md-offset-1">Co-Applicant</div>
+    <div class="col-md-1 text-center col-md-offset-1 submit-coapplicant-rbs">Co-Applicant</div>
 </div>
 
 <div class="row form-group">
@@ -29,29 +29,29 @@
         Are there any outstanding judgments against you?
     </div>
     <div class="col-md-1 col-md-offset-1 row">
-        <div>@Html.Application_Radio_Button("rbBackgroundJudgmentsYes", "rbBackgroundJudgments", "yes", "<span class='submit-rb-text'>Yes</span>")</div>
-        <div>@Html.Application_Radio_Button("rbBackgroundJudgmentsNo", "rbBackgroundJudgments", "no", "<span class='submit-rb-text'>No</span>")</div>
-        <div class="invalid-feedback hidden text-danger col-md-12">Required</div>
+        <div>@Html.Application_Radio_Button("rbBackgroundJudgmentsYes", "rbBackgroundJudgments", "yes", "<span class='submit-rb-text'>Yes</span>", "submit-app-radiobutton")</div>
+        <div>@Html.Application_Radio_Button("rbBackgroundJudgmentsNo", "rbBackgroundJudgments", "no", "<span class='submit-rb-text'>No</span>", "submit-app-radiobutton")</div>
+        <div id="rbBackgroundJudgmentsInvalid" class="invalid-feedback hidden text-danger">Required</div>
     </div>
     <div class="col-md-1 col-md-offset-1 row submit-coapplicant-rbs">
-        <div>@Html.Application_Radio_Button("rbCoapplicantBackgroundJudgmentsYes", "rbCoapplicantBackgroundJudgments", "yes", "<span class='submit-rb-text'>Yes</span>")</div>
-        <div>@Html.Application_Radio_Button("rbCoapplicantBackgroundJudgmentsNo", "rbCoapplicantBackgroundJudgments", "no", "<span class='submit-rb-text'>No</span>")</div>
-        <div class="invalid-feedback hidden text-danger col-md-12">Required</div>
+        <div>@Html.Application_Radio_Button("rbCoapplicantBackgroundJudgmentsYes", "rbCoapplicantBackgroundJudgments", "yes", "<span class='submit-rb-text'>Yes</span>", "submit-app-radiobutton")</div>
+        <div>@Html.Application_Radio_Button("rbCoapplicantBackgroundJudgmentsNo", "rbCoapplicantBackgroundJudgments", "no", "<span class='submit-rb-text'>No</span>", "submit-app-radiobutton")</div>
+        <div id="rbCoapplicantBackgroundJudgmentsInvalid" class="invalid-feedback hidden text-danger">Required</div>
     </div>
 </div>
 <div class="row form-group">
     <div class="col-md-6 text-right submit-application-text">
-        Do you have an open accounts that have been turned over to a collection aagency?
+        Do you have an open accounts that have been turned over to a collection agency?
     </div>
     <div class="col-md-1 col-md-offset-1 row">
-        <div>@Html.Application_Radio_Button("rbCollectionAgencyYes", "rbBackgroundJudgments", "yes", "<span class='submit-rb-text'>Yes</span>")</div>
-        <div>@Html.Application_Radio_Button("rbCollectionAgencyNo", "rbBackgroundJudgments", "no", "<span class='submit-rb-text'>No</span>")</div>
-        <div class="invalid-feedback hidden text-danger col-md-12">Required</div>
+        <div>@Html.Application_Radio_Button("rbCollectionAgencyYes", "rbBackgroundCollectionAgency", "yes", "<span class='submit-rb-text'>Yes</span>", "submit-app-radiobutton")</div>
+        <div>@Html.Application_Radio_Button("rbCollectionAgencyNo",  "rbBackgroundCollectionAgency", "no", "<span class='submit-rb-text'>No</span>", "submit-app-radiobutton")</div>
+        <div id="rbBackgroundCollectionAgencyInvalid" class="invalid-feedback hidden text-danger">Required</div>
     </div>
     <div class="col-md-1 col-md-offset-1 row submit-coapplicant-rbs">
-        <div>@Html.Application_Radio_Button("rbCoapplicantCollectionAgencyYes", "rbCollectionAgency", "yes", "<span class='submit-rb-text'>Yes</span>")</div>
-        <div>@Html.Application_Radio_Button("rbCollectionAgencyNo", "rbCollectionAgency", "no", "<span class='submit-rb-text'>No</span>")</div>
-        <div class="invalid-feedback hidden text-danger col-md-12">Required</div>
+        <div>@Html.Application_Radio_Button("rbCoapplicantCollectionAgencyYes", "rbCoapplicantBackgroundCollectionAgency", "yes", "<span class='submit-rb-text'>Yes</span>", "submit-app-radiobutton")</div>
+        <div>@Html.Application_Radio_Button("rbCoapplicantCollectionAgencyNo",  "rbCoapplicantBackgroundCollectionAgency", "no", "<span class='submit-rb-text'>No</span>", "submit-app-radiobutton")</div>
+        <div id="rbCoapplicantBackgroundCollectionAgencyInvalid" class="invalid-feedback hidden text-danger">Required</div>
     </div>
 </div>
 
@@ -61,29 +61,29 @@
                                                       Have you been declared bankrupt within the past 7 years?
                                                   </div>
                                                   <div class="col-md-1 col-md-offset-1 row">
-                                                      <div>@Html.Application_Radio_Button("rbBackgroundBankruptcyYes", "rbBackgroundJudgments", "yes", "<span class='submit-rb-text'>Yes</span>")</div>
-                                                      <div>@Html.Application_Radio_Button("rbBackgroundBankruptcyNo", "rbBackgroundJudgments", "no", "<span class='submit-rb-text'>No</span>")</div>
-                                                      <div class="invalid-feedback hidden text-danger col-md-12">Required</div>
+                                                      <div>@Html.Application_Radio_Button("rbBackgroundBankruptcyYes", "rbBackgroundBankruptcy", "yes", "<span class='submit-rb-text'>Yes</span>", "submit-app-radiobutton")</div>
+                                                      <div>@Html.Application_Radio_Button("rbBackgroundBankruptcyNo", "rbBackgroundBankruptcy", "no", "<span class='submit-rb-text'>No</span>", "submit-app-radiobutton")</div>
+                                                      <div id="rbBackgroundBankruptcyInvalid" class="invalid-feedback hidden text-danger">Required</div>
                                                   </div>
                                                   <div class="col-md-1 col-md-offset-1 row submit-coapplicant-rbs">
-                                                      <div>@Html.Application_Radio_Button("rbCoapplicantBackgroundBankruptcyYes", "rbBackgroundBankruptcy", "yes", "<span class='submit-rb-text'>Yes</span>")</div>
-                                                      <div>@Html.Application_Radio_Button("rbBackgroundBankruptcyNo", "rbBackgroundBankruptcy", "no", "<span class='submit-rb-text'>No</span>")</div>
-                                                      <div class="invalid-feedback hidden text-danger col-md-12">Required</div>
+                                                      <div>@Html.Application_Radio_Button("rbCoapplicantBackgroundBankruptcyYes", "rbCoapplicantBackgroundBankruptcy", "yes", "<span class='submit-rb-text'>Yes</span>", "submit-app-radiobutton")</div>
+                                                      <div>@Html.Application_Radio_Button("rbCoapplicantBackgroundBankruptcyNo", "rbCoapplicantBackgroundBankruptcy", "no", "<span class='submit-rb-text'>No</span>", "submit-app-radiobutton")</div>
+                                                      <div id="rbCoapplicantBackgroundBankruptcyInvalid" class="invalid-feedback hidden text-danger">Required</div>
                                                   </div>
                                               </div>
                                               <div class="row form-group">
                                                   <div class="col-md-6 text-right submit-application-text">
-                                                      Have you had property forclosed upon or given title or dee in lieu thereof in the last 7 years?
+                                                      Have you had property forclosed upon or given title or deed in lieu thereof in the last 7 years?
                                                   </div>
                                                   <div class="col-md-1 col-md-offset-1 row">
-                                                      <div>@Html.Application_Radio_Button("rbBackgroundForclosureYes", "rbBackgroundJudgments", "yes", "<span class='submit-rb-text'>Yes</span>")</div>
-                                                      <div>@Html.Application_Radio_Button("rbBackgroundForclosureNo", "rbBackgroundJudgments", "no", "<span class='submit-rb-text'>No</span>")</div>
-                                                      <div class="invalid-feedback hidden text-danger col-md-12">Required</div>
+                                                      <div>@Html.Application_Radio_Button("rbBackgroundForclosureYes", "rbBackgroundForclosure", "yes", "<span class='submit-rb-text'>Yes</span>", "submit-app-radiobutton")</div>
+                                                      <div>@Html.Application_Radio_Button("rbBackgroundForclosureNo", "rbBackgroundForclosure", "no", "<span class='submit-rb-text'>No</span>", "submit-app-radiobutton")</div>
+                                                      <div id="rbBackgroundForclosureInvalid" class="invalid-feedback hidden text-danger">Required</div>
                                                   </div>
                                                   <div class="col-md-1 col-md-offset-1 row submit-coapplicant-rbs">
-                                                      <div>@Html.Application_Radio_Button("rbCoapplicantBackgroundForclosureYes", "rbBackgroundForclosure", "yes", "<span class='submit-rb-text'>Yes</span>")</div>
-                                                      <div>@Html.Application_Radio_Button("rbBackgroundForclosureNo", "rbBackgroundForclosure", "no", "<span class='submit-rb-text'>No</span>")</div>
-                                                      <div class="invalid-feedback hidden text-danger col-md-12">Required</div>
+                                                      <div>@Html.Application_Radio_Button("rbCoapplicantBackgroundForclosureYes", "rbCoapplicantBackgroundForclosure", "yes", "<span class='submit-rb-text'>Yes</span>", "submit-app-radiobutton")</div>
+                                                      <div>@Html.Application_Radio_Button("rbCoapplicantBackgroundForclosureNo", "rbCoapplicantBackgroundForclosure", "no", "<span class='submit-rb-text'>No</span>", "submit-app-radiobutton")</div>
+                                                      <div id="rbCoapplicantBackgroundForclosureInvalid" class="invalid-feedback hidden text-danger">Required</div>
                                                   </div>
                                               </div>
                                               <div class="row form-group">
@@ -91,14 +91,14 @@
                                                       Are you party to a lawsuit?
                                                   </div>
                                                   <div class="col-md-1 col-md-offset-1 row">
-                                                      <div>@Html.Application_Radio_Button("rbBackgrounLawsuitYes", "rbBackgroundJudgments", "yes", "<span class='submit-rb-text'>Yes</span>")</div>
-                                                      <div>@Html.Application_Radio_Button("rbBackgrounLawsuitNo", "rbBackgroundJudgments", "no", "<span class='submit-rb-text'>No</span>")</div>
-                                                      <div class="invalid-feedback hidden text-danger col-md-12">Required</div>
+                                                      <div>@Html.Application_Radio_Button("rbBackgrounLawsuitYes", "rbBackgroundLawsuit", "yes", "<span class='submit-rb-text'>Yes</span>", "submit-app-radiobutton")</div>
+                                                      <div>@Html.Application_Radio_Button("rbBackgrounLawsuitNo", "rbBackgroundLawsuit", "no", "<span class='submit-rb-text'>No</span>", "submit-app-radiobutton")</div>
+                                                      <div id="rbBackgroundLawsuitInvalid" class="invalid-feedback hidden text-danger">Required</div>
                                                   </div>
                                                   <div class="col-md-1 col-md-offset-1 row submit-coapplicant-rbs">
-                                                      <div>@Html.Application_Radio_Button("rbCoapplicantBackgrounLawsuitYes", "rbBackgrounLawsuit", "yes", "<span class='submit-rb-text'>Yes</span>")</div>
-                                                      <div>@Html.Application_Radio_Button("rbBackgrounLawsuitNo", "rbBackgrounLawsuit", "no", "<span class='submit-rb-text'>No</span>")</div>
-                                                      <div class="invalid-feedback hidden text-danger col-md-12">Required</div>
+                                                      <div>@Html.Application_Radio_Button("rbCoapplicantBackgrounLawsuitYes", "rbCoapplicantBackgroundLawsuit", "yes", "<span class='submit-rb-text'>Yes</span>", "submit-app-radiobutton")</div>
+                                                      <div>@Html.Application_Radio_Button("rbCoapplicantBackgrounLawsuitNo", "rbCoapplicantBackgroundLawsuit", "no", "<span class='submit-rb-text'>No</span>", "submit-app-radiobutton")</div>
+                                                      <div id="rbCoapplicantBackgroundLawsuitInvalid" class="invalid-feedback hidden text-danger">Required</div>
                                                   </div>
                                               </div>
                                               <div class="row form-group">
@@ -106,14 +106,14 @@
                                                       Have you directly or indirectly been bligated on any load which resulted in foreclosure, transfer of title in lieu of foreclosure, or judgment?
                                                   </div>
                                                   <div class="col-md-1 col-md-offset-1 row">
-                                                      <div>@Html.Application_Radio_Button("rbBackgroundTransferOfTitleYes", "rbBackgroundJudgments", "yes", "<span class='submit-rb-text'>Yes</span>")</div>
-                                                      <div>@Html.Application_Radio_Button("rbBackgroundTransferOfTitleNo", "rbBackgroundJudgments", "no", "<span class='submit-rb-text'>No</span>")</div>
-                                                      <div class="invalid-feedback hidden text-danger col-md-12">Required</div>
+                                                      <div>@Html.Application_Radio_Button("rbBackgroundTransferOfTitleYes", "rbBackgroundTransferOfTitle", "yes", "<span class='submit-rb-text'>Yes</span>", "submit-app-radiobutton")</div>
+                                                      <div>@Html.Application_Radio_Button("rbBackgroundTransferOfTitleNo",  "rbBackgroundTransferOfTitle", "no", "<span class='submit-rb-text'>No</span>", "submit-app-radiobutton")</div>
+                                                      <div id="rbBackgroundTransferOfTitleInvalid" class="invalid-feedback hidden text-danger">Required</div>
                                                   </div>
                                                   <div class="col-md-1 col-md-offset-1 row submit-coapplicant-rbs">
-                                                      <div>@Html.Application_Radio_Button("rbCoapplicantBackgroundTransferOfTitleYes", "rbBackgroundTransferOfTitle", "yes", "<span class='submit-rb-text'>Yes</span>")</div>
-                                                      <div>@Html.Application_Radio_Button("rbBackgroundTransferOfTitleNo", "rbBackgroundTransferOfTitle", "no", "<span class='submit-rb-text'>No</span>")</div>
-                                                      <div class="invalid-feedback hidden text-danger col-md-12">Required</div>
+                                                      <div>@Html.Application_Radio_Button("rbCoapplicantBackgroundTransferOfTitleYes", "rbCoapplicantBackgroundTransferOfTitle", "yes", "<span class='submit-rb-text'>Yes</span>", "submit-app-radiobutton")</div>
+                                                      <div>@Html.Application_Radio_Button("rbCoapplicantBackgroundTransferOfTitleNo", "rbCoapplicantBackgroundTransferOfTitle", "no", "<span class='submit-rb-text'>No</span>", "submit-app-radiobutton")</div>
+                                                      <div id="rbCoapplicantBackgroundTransferOfTitleInvalid" class="invalid-feedback hidden text-danger">Required</div>
                                                   </div>
                                               </div>
                                               <div class="row form-group">
@@ -121,14 +121,14 @@
                                                       Are you presently delinquent or in default on any federal debt or any other loan, mortgage, financial obligation, bond or loan guarantee?
                                                   </div>
                                                   <div class="col-md-1 col-md-offset-1 row">
-                                                      <div>@Html.Application_Radio_Button("rbBackgroundDelinquentYes", "rbBackgroundJudgments", "yes", "<span class='submit-rb-text'>Yes</span>")</div>
-                                                      <div>@Html.Application_Radio_Button("rbBackgroundDelinquentNo", "rbBackgroundJudgments", "no", "<span class='submit-rb-text'>No</span>")</div>
-                                                      <div class="invalid-feedback hidden text-danger col-md-12">Required</div>
+                                                      <div>@Html.Application_Radio_Button("rbBackgroundDelinquentYes", "rbBackgroundDelinquent", "yes", "<span class='submit-rb-text'>Yes</span>", "submit-app-radiobutton")</div>
+                                                      <div>@Html.Application_Radio_Button("rbBackgroundDelinquentNo",  "rbBackgroundDelinquent", "no", "<span class='submit-rb-text'>No</span>", "submit-app-radiobutton")</div>
+                                                      <div id="rbBackgroundDelinquentInvalid" class="invalid-feedback hidden text-danger">Required</div>
                                                   </div>
                                                   <div class="col-md-1 col-md-offset-1 row submit-coapplicant-rbs">
-                                                      <div>@Html.Application_Radio_Button("rbCoapplicantBackgroundDelinquentYes", "rbBackgroundDelinquent", "yes", "<span class='submit-rb-text'>Yes</span>")</div>
-                                                      <div>@Html.Application_Radio_Button("rbBackgroundDelinquentNo", "rbBackgroundDelinquent", "no", "<span class='submit-rb-text'>No</span>")</div>
-                                                      <div class="invalid-feedback hidden text-danger col-md-12">Required</div>
+                                                      <div>@Html.Application_Radio_Button("rbCoapplicantBackgroundDelinquentYes", "rbCoapplicantBackgroundDelinquent", "yes", "<span class='submit-rb-text'>Yes</span>", "submit-app-radiobutton")</div>
+                                                      <div>@Html.Application_Radio_Button("rbCoapplicantBackgroundDelinquentNo", "rbCoapplicantBackgroundDelinquent", "no", "<span class='submit-rb-text'>No</span>", "submit-app-radiobutton")</div>
+                                                      <div id="rbCoapplicantBackgroundDelinquentInvalid" class="invalid-feedback hidden text-danger">Required</div>
                                                   </div>
                                               </div>
                                               <div class="row form-group">
@@ -136,14 +136,14 @@
                                                       Are you obligated to pay child support, alimony, or separate maintenance?
                                                   </div>
                                                   <div class="col-md-1 col-md-offset-1 row">
-                                                      <div>@Html.Application_Radio_Button("rbBackgroundChildsupportYes", "rbBackgroundJudgments", "yes", "<span class='submit-rb-text'>Yes</span>")</div>
-                                                      <div>@Html.Application_Radio_Button("rbBackgroundChildsupportNo", "rbBackgroundJudgments", "no", "<span class='submit-rb-text'>No</span>")</div>
-                                                      <div class="invalid-feedback hidden text-danger col-md-12">Required</div>
+                                                      <div>@Html.Application_Radio_Button("rbBackgroundChildSupportYes", "rbBackgroundChildSupport", "yes", "<span class='submit-rb-text'>Yes</span>", "submit-app-radiobutton")</div>
+                                                      <div>@Html.Application_Radio_Button("rbBackgroundChildSupportNo",  "rbBackgroundChildSupport", "no", "<span class='submit-rb-text'>No</span>", "submit-app-radiobutton")</div>
+                                                      <div id="rbBackgroundChildSupportInvalid" class="invalid-feedback hidden text-danger">Required</div>
                                                   </div>
                                                   <div class="col-md-1 col-md-offset-1 row submit-coapplicant-rbs">
-                                                      <div>@Html.Application_Radio_Button("rbCoapplicantBackgroundChildsupportYes", "rbBackgroundChildsupport", "yes", "<span class='submit-rb-text'>Yes</span>")</div>
-                                                      <div>@Html.Application_Radio_Button("rbBackgroundChildsupportNo", "rbBackgroundChildsupport", "no", "<span class='submit-rb-text'>No</span>")</div>
-                                                      <div class="invalid-feedback hidden text-danger col-md-12">Required</div>
+                                                      <div>@Html.Application_Radio_Button("rbCoapplicantBackgroundChildSupportYes", "rbCoapplicantBackgroundChildSupport", "yes", "<span class='submit-rb-text'>Yes</span>", "submit-app-radiobutton")</div>
+                                                      <div>@Html.Application_Radio_Button("rbCoapplicantBackgroundChildSupportNo", "rbCoapplicantBackgroundChildSupport", "no", "<span class='submit-rb-text'>No</span>", "submit-app-radiobutton")</div>
+                                                      <div id="rbCoapplicantBackgroundChildSupportInvalid" class="invalid-feedback hidden text-danger">Required</div>
                                                   </div>
                                               </div>
                                               <div class="row form-group">
@@ -151,14 +151,14 @@
                                                       Are you a co-maker or endorser on a note?
                                                   </div>
                                                   <div class="col-md-1 col-md-offset-1 row">
-                                                      <div>@Html.Application_Radio_Button("rbBackgroundComakerYes", "rbBackgroundJudgments", "yes", "<span class='submit-rb-text'>Yes</span>")</div>
-                                                      <div>@Html.Application_Radio_Button("rbBackgroundComakerNo", "rbBackgroundJudgments", "no", "<span class='submit-rb-text'>No</span>")</div>
-                                                      <div class="invalid-feedback hidden text-danger col-md-12">Required</div>
+                                                      <div>@Html.Application_Radio_Button("rbBackgroundComakerYes", "rbBackgroundComaker", "yes", "<span class='submit-rb-text'>Yes</span>", "submit-app-radiobutton")</div>
+                                                      <div>@Html.Application_Radio_Button("rbBackgroundComakerNo",  "rbBackgroundComaker", "no", "<span class='submit-rb-text'>No</span>", "submit-app-radiobutton")</div>
+                                                      <div id="rbBackgroundComakerInvalid" class="invalid-feedback hidden text-danger">Required</div>
                                                   </div>
                                                   <div class="col-md-1 col-md-offset-1 row submit-coapplicant-rbs">
-                                                      <div>@Html.Application_Radio_Button("rbCoapplicantBackgroundComakerYes", "rbBackgroundComaker", "yes", "<span class='submit-rb-text'>Yes</span>")</div>
-                                                      <div>@Html.Application_Radio_Button("rbBackgroundComakerNo", "rbBackgroundComaker", "no", "<span class='submit-rb-text'>No</span>")</div>
-                                                      <div class="invalid-feedback hidden text-danger col-md-12">Required</div>
+                                                      <div>@Html.Application_Radio_Button("rbCoapplicantBackgroundComakerYes", "rbCoapplicantBackgroundComaker", "yes", "<span class='submit-rb-text'>Yes</span>", "submit-app-radiobutton")</div>
+                                                      <div>@Html.Application_Radio_Button("rbCoapplicantBackgroundComakerNo", "rbCoapplicantBackgroundComaker", "no", "<span class='submit-rb-text'>No</span>", "submit-app-radiobutton")</div>
+                                                      <div id="rbCoapplicantBackgroundComakerInvalid" class="invalid-feedback hidden text-danger">Required</div>
                                                   </div>
                                               </div>
                                               <div class="row form-group">
@@ -166,29 +166,29 @@
                                                       Are you a U.S. citizen?
                                                   </div>
                                                   <div class="col-md-1 col-md-offset-1 row">
-                                                      <div>@Html.Application_Radio_Button("rbBackgroundCitizenYes", "rbBackgroundJudgments", "yes", "<span class='submit-rb-text'>Yes</span>")</div>
-                                                      <div>@Html.Application_Radio_Button("rbBackgroundCitizenNo", "rbBackgroundJudgments", "no", "<span class='submit-rb-text'>No</span>")</div>
-                                                      <div class="invalid-feedback hidden text-danger col-md-12">Required</div>
+                                                      <div>@Html.Application_Radio_Button("rbBackgroundCitizenYes", "rbBackgroundCitizen", "yes", "<span class='submit-rb-text'>Yes</span>", "submit-app-radiobutton")</div>
+                                                      <div>@Html.Application_Radio_Button("rbBackgroundCitizenNo",  "rbBackgroundCitizen", "no", "<span class='submit-rb-text'>No</span>", "submit-app-radiobutton")</div>
+                                                      <div id="rbBackgroundCitizenInvalid" class="invalid-feedback hidden text-danger">Required</div>
                                                   </div>
                                                   <div class="col-md-1 col-md-offset-1 row submit-coapplicant-rbs">
-                                                      <div>@Html.Application_Radio_Button("rbCoapplicantBackgroundCitizenYes", "rbBackgroundCitizen", "yes", "<span class='submit-rb-text'>Yes</span>")</div>
-                                                      <div>@Html.Application_Radio_Button("rbBackgroundCitizenNo", "rbBackgroundCitizen", "no", "<span class='submit-rb-text'>No</span>")</div>
-                                                      <div class="invalid-feedback hidden text-danger col-md-12">Required</div>
+                                                      <div>@Html.Application_Radio_Button("rbCoapplicantBackgroundCitizenYes", "rbCoapplicantBackgroundCitizen", "yes", "<span class='submit-rb-text'>Yes</span>", "submit-app-radiobutton")</div>
+                                                      <div>@Html.Application_Radio_Button("rbCoapplicantBackgroundCitizenNo", "rbCoapplicantBackgroundCitizen", "no", "<span class='submit-rb-text'>No</span>", "submit-app-radiobutton")</div>
+                                                      <div id="rbCoapplicantBackgroundCitizenInvalid" class="invalid-feedback hidden text-danger">Required</div>
                                                   </div>
                                               </div>
                                               <div class="row form-group">
                                                   <div class="col-md-6 text-right submit-application-text">
-                                                      Do you inend to occupy the subject property as tyour primary residence?
+                                                      Do you inend to occupy the subject property as your primary residence?
                                                   </div>
                                                   <div class="col-md-1 col-md-offset-1 row">
-                                                      <div>@Html.Application_Radio_Button("rbBackgroundPrimaryResidenceYes", "rbBackgroundJudgments", "yes", "<span class='submit-rb-text'>Yes</span>")</div>
-                                                      <div>@Html.Application_Radio_Button("rbBackgroundPrimaryResidenceNo", "rbBackgroundJudgments", "no", "<span class='submit-rb-text'>No</span>")</div>
-                                                      <div class="invalid-feedback hidden text-danger col-md-12">Required</div>
+                                                      <div>@Html.Application_Radio_Button("rbBackgroundPrimaryResidenceYes", "rbBackgroundPrimaryResidence", "yes", "<span class='submit-rb-text'>Yes</span>", "submit-app-radiobutton")</div>
+                                                      <div>@Html.Application_Radio_Button("rbBackgroundPrimaryResidenceNo", "rbBackgroundPrimaryResidence", "no", "<span class='submit-rb-text'>No</span>", "submit-app-radiobutton")</div>
+                                                      <div id="rbBackgroundPrimaryResidenceInvalid" class="invalid-feedback hidden text-danger">Required</div>
                                                   </div>
                                                   <div class="col-md-1 col-md-offset-1 row submit-coapplicant-rbs">
-                                                      <div>@Html.Application_Radio_Button("rbCoapplicantBackgroundPrimaryResidenceYes", "rbBackgroundPrimaryResidence", "yes", "<span class='submit-rb-text'>Yes</span>")</div>
-                                                      <div>@Html.Application_Radio_Button("rbBackgroundPrimaryResidenceNo", "rbBackgroundPrimaryResidence", "no", "<span class='submit-rb-text'>No</span>")</div>
-                                                      <div class="invalid-feedback hidden text-danger col-md-12">Required</div>
+                                                      <div>@Html.Application_Radio_Button("rbCoapplicantBackgroundPrimaryResidenceYes", "rbCoapplicantBackgroundPrimaryResidence", "yes", "<span class='submit-rb-text'>Yes</span>", "submit-app-radiobutton")</div>
+                                                      <div>@Html.Application_Radio_Button("rbCoapplicantBackgroundPrimaryResidenceNo", "rbCoapplicantBackgroundPrimaryResidence", "no", "<span class='submit-rb-text'>No</span>", "submit-app-radiobutton")</div>
+                                                      <div id="rbCoapplicantBackgroundPrimaryResidenceInvalid" class="invalid-feedback hidden text-danger">Required</div>
                                                   </div>
                                               </div>
 
@@ -199,5 +199,5 @@
 
 @Html.Application_Navigation_Buttons(
     new CustomHelpers.NavigationButton() { EnableValidation = false, PageId = "ExpensesInfo" },
-    new CustomHelpers.NavigationButton() { PageId = "SubmitApp" }
+    new CustomHelpers.NavigationButton() { PageId = "ReviewApp" }
 )

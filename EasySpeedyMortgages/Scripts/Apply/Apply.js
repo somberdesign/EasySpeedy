@@ -131,6 +131,9 @@ function ValidateAndGo(pageId) {
         case 'SubmitApp':
             if (!ValidateIncomeInfo()) return false;
             break;
+        case 'ReviewApp':
+            if (!ValidateSubmitApp()) return false;
+            break;
         default:
             console.log(`switch fell through when pageId=${pageId}`);
             return false;
@@ -194,8 +197,15 @@ function Go(pageId) {
 		    $('#aSubmitApp').tab('show');
 			window.scrollTo(0, 0);
 			FillFormFields('frmSubmitApp');
+            // hide co-applicant column, if needed
+			if (typeof formValues['rbWhoIsApplying'] !== 'undefined' && formValues['rbWhoIsApplying'].length > 0 && formValues['rbWhoIsApplying'] === 'Individually') {
+			    $('.submit-coapplicant-rbs').addClass('hidden');
+			}
 			break;
-		}
+        case 'ReviewApp':
+            $('#aReviewApp').tab('show');
+            window.scrollTo(0, 0);
+    }
     // $('#aPersonalInfo').tab('show');
     // $('#aPropertyInfo').tab('show');
     // $('#aLoanSelection').tab('show');
@@ -1209,6 +1219,38 @@ function FillFormFields(formName) {
                 break;
         }
     });
+}
+
+function ValidateSubmitApp() {
+    var applicantNames = ['rbBackgroundBankruptcy', 'rbBackgroundChildSupport', 'rbBackgroundCitizen', 'rbBackgroundCollectionAgency', 'rbBackgroundComaker', 'rbBackgroundDelinquent', 'rbBackgroundJudgments', 'rbBackgroundLawsuit', 'rbBackgroundPrimaryResidence', 'rbBackgroundTransferOfTitle', 'rbBackgroundForclosure'];
+    var coApplicantNames = ['rbCoapplicantBackgroundBankruptcy', 'rbCoapplicantBackgroundChildSupport', 'rbCoapplicantBackgroundCitizen', 'rbCoapplicantBackgroundCollectionAgency', 'rbCoapplicantBackgroundComaker', 'rbCoapplicantBackgroundDelinquent', 'rbCoapplicantBackgroundJudgments', 'rbCoapplicantBackgroundJudgments', 'rbCoapplicantBackgroundLawsuit', 'rbCoapplicantBackgroundPrimaryResidence', 'rbCoapplicantBackgroundTransferOfTitle', 'rbCoapplicantBackgroundForclosure'];
+    var isValid = true;
+
+    $('#frmSubmitApp .form-group').removeClass('has-error');
+    $('#frmSubmitApp .invalid-feedback').addClass('hidden');
+
+    function ValidateSubmitAppResponse(rbName) {
+        if (typeof formValues[rbName] === 'undefined' || formValues[rbName].length === 0) {
+            $('#' + rbName + 'Invalid')
+                .addClass('has-error')
+                .removeClass('hidden');
+            return false;
+        }
+        return true;
+    }
+
+    $.each(applicantNames, function (i, rbName) {
+        isValid = ValidateSubmitAppResponse(rbName) && isValid;
+    });
+
+    if (typeof formValues['rbWhoIsApplying'] === 'undefined') console.error('WARNING: rbWhoIsApplying is undefined');
+    if (typeof formValues['rbWhoIsApplying'] !== 'undefined' && formValues['rbWhoIsApplying'].length > 0 && formValues['rbWhoIsApplying'] !== 'Individually') {
+        $.each(coApplicantNames, function (i, rbName) {
+            isValid = ValidateSubmitAppResponse(rbName) && isValid;
+        });
+    }
+
+    return isValid;
 }
 
 function ValidateAssetInfo() {
