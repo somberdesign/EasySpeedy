@@ -6,9 +6,39 @@
 
 
 @Html.Application_Navigation_Buttons(
-    new CustomHelpers.NavigationButton() { EnableValidation = false, PageId = "SubmitApp" },
+    new CustomHelpers.NavigationButton() { EnableValidation = false, PageId = "ReviewApp" },
     null
 )
 
+<form id="frmReviewApp">
+    <fieldset>
+            <legend>Start App</legend>
 
+            @Html.Application_Display_Text("StartAppEmailAddress", "Email Address", "form-control review-app-value", string.Empty)
+    </fieldset>
+    <fieldset>
+        <legend>Personal Info</legend>
+    </fieldset>
+    <fieldset>
+        <legend>Property Info</legend>
+    </fieldset>
+    <fieldset>
+        <legend>Loan Selection</legend>
+    </fieldset>
+    <fieldset>
+        <legend>Asset Info</legend>
+    </fieldset>
+    <fieldset>
+        <legend>Expenses Info</legend>
+    </fieldset>
+    <fieldset>
+        <legend>Income Info</legend>
+    </fieldset>
+    <fieldset>
+        <legend>Background</legend>
+    </fieldset>
+    <fieldset>
+        <legend>Review App</legend>
+    </fieldset>
 
+</form>

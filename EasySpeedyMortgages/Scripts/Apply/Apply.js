@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-const defaultStartPage = 'SubmitApp'
+const defaultStartPage = 'ReviewApp'
 
 var formValues = {};
 var dynamicControlCounter = 0;
@@ -203,6 +203,7 @@ function Go(pageId) {
 			}
 			break;
         case 'ReviewApp':
+            FillFormFields('frmReviewApp');
             $('#aReviewApp').tab('show');
             window.scrollTo(0, 0);
     }
@@ -1202,7 +1203,11 @@ function FillFormFields(formName) {
         var ctrl = $(this);
         var name = ctrl.attr('name');
 
-        if (filledFields.includes(name)) return true;
+        if (ctrl.hasClass('review-app-value') && ctrl.attr('idStem') !== 'undefined') {
+            ctrl.innerText = formValues[ctrl.attr('idStem')];
+        }
+
+        if (name === 'undefined' || filledFields.includes(name)) return true;
         filledFields.push(name);
         if (typeof formValues[name] === 'undefined') return true;
 
@@ -1214,7 +1219,6 @@ function FillFormFields(formName) {
                 $('#' + formValues[name]).prop('checked', true);
                 break;
             default: // text, email
-                console.log(`name=${name}, type=${ctrl.attr('type')}`);
                 ctrl.val(formValues[name]);
                 break;
         }

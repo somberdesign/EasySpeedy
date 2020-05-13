@@ -24,6 +24,22 @@ namespace EasySpeedyMortgages.Classes
             return new HtmlString(returnVal);
         }
 
+        public static IHtmlString Application_Display_Text(this HtmlHelper helper, string idStem, string labelText, string valueDivClass = "", string value = "")
+        {
+            if (valueDivClass.Length > 0)
+                valueDivClass = " " + valueDivClass;
+
+            var template = string.Format(@"
+<div id=""div{0}"" class=""row form-group"">
+    <div class=""col-md-3 text-right"">
+        <label id=""lbl{0}"" class=""control-label application-textbox-label"">{1}</label>
+    </div>
+    <div id=""divValue{0}"" class=""col-md-9{3}"" idStem=""{0}"">{2}</div>
+</div>
+", idStem, labelText, value, valueDivClass);
+
+            return new HtmlString(template);
+        }
 
         public static IHtmlString Application_Dropdown_List(this HtmlHelper helper, string idStem, string labelText, List<SelectListItem> items, SelectListItem topItem = null)
         {
